@@ -15,14 +15,127 @@
     </section>
 
     <section class="main-content">
-        <h1><a id="Introduction_0"></a>Excersize 1</h1>
-        <p>First of all what is python? Python is a interpreted programming language, it lets us talk to computers and ask them to do things for us.<br>
-        We write python in plain text and pass it into the python interperter, it <em>interperts</em> the code we give it into instructions the computer understands and will run those.</p>
-        <blockquote>
-        <p>Sidenote: Python gets compiled into python bytecode which similar to java runs on a VM, This Vm gives the code a lot of extra features such as dynamic typing and error handling and portability of code but obviously comes with major speed hits. Where a language like C compiles directly to machine code that runs on your cpu, python is run on a layer of code that is constantly checking things and managing the enviornment. This is a tradeoff, you get simpler code that is easier to reason about but the speed tanks. <strong>That’s ok for most reasons, computers are quite fast and you are happy to wait a couple of seconds for results where doing them by hand would take months.</strong></p>
-        </blockquote>
-        <p>To talk to the python interperter you have to write code in the python syntax, which is designed to be somewhat easy to pick up. To play with python you can launch up a interpert session by opening a terminal in your intellij window and typing in <code>python</code></p>
+<h1><a id="Introduction_0"></a>Introduction</h1>
+<p>First of all what is python? Python is a interpreted programming language, it lets us talk to computers and ask them to do things for us.<br>
+We write python in plain text and pass it into the python interperter, it <em>interperts</em> the code we give it into instructions the computer understands and will run those.</p>
+<blockquote>
+<p>Sidenote: Python gets compiled into python bytecode which similar to java runs on a VM, This Vm gives the code a lot of extra features such as dynamic typing and error handling and portability of code but obviously comes with major speed hits. Where a language like C compiles directly to machine code that runs on your cpu, python is run on a layer of code that is constantly checking things and managing the enviornment. This is a tradeoff, you get simpler code that is easier to reason about but the speed tanks. <strong>That’s ok for most reasons, computers are quite fast and you are happy to wait a couple of seconds for results where doing them by hand would take months.</strong></p>
+</blockquote>
+<p>To talk to the python interperter you have to write code in the python syntax, which is designed to be somewhat easy to pick up. To play with python you can launch up a interpert session by opening a terminal in your intellij window and typing in <code>python</code></p>
+<h1><a id="Python_2_vs_Python_3_9"></a>Python 2 vs Python 3</h1>
+<p>Python 2 was the first verion of python that begun to be used accross the board, when python 3 came along there are so much code already written in python 2 and so many parts of it that would break with a update to python 3 that python 3 became a new programming language in it’s own right. The two languages are very similar but with enough differences that you need to know the difference. For your purposes use python3, it’s what everyone is aiming to shift to and it has much better support.</p>
+<h1><a id="Types_13"></a>Types</h1>
+<p>So within python there are a couple of basic <em>types</em> of data that we can work with and it’s important to understand the differences. The main types of data you will work with are numbers, strings, and booleans.</p>
+<p>a number is very simple it’s a integer like <code>12</code> or a floating point number like <code>123.5</code> (floating point number is a computer science term for number with a decimal point)<br>
+Math between the two works as expected</p>
+<p>Then there are strings, now a computer only understands numbers it has no concept of text, so some engineers came up with something called <em>ascii</em> which gives every letter a number value. This lets us do things like ass strings together and edit characters etc. and then jsut convert the numbers to letters when printing to a screen.</p>
+<pre><code>Dec Hex    Dec Hex    Dec Hex  Dec Hex  Dec Hex  Dec Hex   Dec Hex   Dec Hex  
+  0 00 NUL  16 10 DLE  32 20    48 30 0  64 40 @  80 50 P   96 60 `  112 70 p
+  1 01 SOH  17 11 DC1  33 21 !  49 31 1  65 41 A  81 51 Q   97 61 a  113 71 q
+  2 02 STX  18 12 DC2  34 22 &quot;  50 32 2  66 42 B  82 52 R   98 62 b  114 72 r
+  3 03 ETX  19 13 DC3  35 23 #  51 33 3  67 43 C  83 53 S   99 63 c  115 73 s
+  4 04 EOT  20 14 DC4  36 24 $  52 34 4  68 44 D  84 54 T  100 64 d  116 74 t
+  5 05 ENQ  21 15 NAK  37 25 %  53 35 5  69 45 E  85 55 U  101 65 e  117 75 u
+  6 06 ACK  22 16 SYN  38 26 &amp;  54 36 6  70 46 F  86 56 V  102 66 f  118 76 v
+  7 07 BEL  23 17 ETB  39 27 '  55 37 7  71 47 G  87 57 W  103 67 g  119 77 w
+  8 08 BS   24 18 CAN  40 28 (  56 38 8  72 48 H  88 58 X  104 68 h  120 78 x
+  9 09 HT   25 19 EM   41 29 )  57 39 9  73 49 I  89 59 Y  105 69 i  121 79 y
+ 10 0A LF   26 1A SUB  42 2A *  58 3A :  74 4A J  90 5A Z  106 6A j  122 7A z
+ 11 0B VT   27 1B ESC  43 2B +  59 3B ;  75 4B K  91 5B [  107 6B k  123 7B {
+ 12 0C FF   28 1C FS   44 2C ,  60 3C &lt;  76 4C L  92 5C \  108 6C l  124 7C |
+ 13 0D CR   29 1D GS   45 2D -  61 3D =  77 4D M  93 5D ]  109 6D m  125 7D }
+ 14 0E SO   30 1E RS   46 2E .  62 3E &gt;  78 4E N  94 5E ^  110 6E n  126 7E ~
+ 15 0F SI   31 1F US   47 2F /  63 3F ?  79 4F O  95 5F _  111 6F o  127 7F DEL
 
+</code></pre>
+<p>the word “HELLO” would be [72, 69, 76, 76, 79]. Of course writing out numbers whenever we want to print text is REAL annoying so we can just use a short hand by specifing our string as with a double or single quote.</p>
+<pre><code class="language-python"><span class="hljs-string">"HEllo"</span> <span class="hljs-string">'woah'</span>
+</code></pre>
+<p>Now python makes is so we never have to think about how strings are really just numbers in the backend, But it’s important to understand this table because when you do something like</p>
+<pre><code class="language-python"><span class="hljs-string">"hello"</span> &gt; <span class="hljs-string">"HELLO"</span>
+</code></pre>
+<p>you get <code>True</code> because when python compares every letter of the first string to the second string it just compares the ascii value, and <code>104 &gt; 72</code></p>
+<p>We also have another type, boolean, this consists of True and False, self explanatory, it’s for when you want to represent data that can be in one of two states, true or false.</p>
+<p>Now you have to be careful because some operations only make sense when done with the same type</p>
+<pre><code class="language-python">"A" + "B" = "AB"
+1 + 1  = 2
+1 + "A" = ????
+</code></pre>
+<p>python<br>
+This will likely be the biggest source of pain for you but python lets you convert between things easily. the string “12” can be converted to the number 12 by just doign <code>int(&quot;12&quot;)</code> and similarily you can do <code>float(&quot;12.34&quot;)</code> and even <code>str(12)</code>to get “12”</p>
+<p>One last type that’s important to know is <code>None</code> this is how python represents no data, it’s important to have this because there is a difference between having 0 of something and not knowing what the value is, use <code>None</code> whenever you want to signal that you don’t know what something is.</p>
+<h1><a id="Variables_71"></a>Variables</h1>
+<p>Now it would be useless if all python could so it add some numbers together or print some strings out, no better then a calculator, so python lets us store values in variables. These are basically ways we can talk about peices of data by reference</p>
+<pre><code class="language-python">&gt; a = <span class="hljs-number">1</span>
+&gt; b = <span class="hljs-number">2</span>
+&gt; a + b
+<span class="hljs-number">3</span>
+</code></pre>
+<p>A good basic princible to understand is comments, these are things you can write into your code that are ignored by the interperted</p>
+<pre><code># I am doing 1+1
+a = 1+1
+</code></pre>
+<h1><a id="Comparisons_90"></a>Comparisons</h1>
+<p>There are operations that take two things and return a boolean representing some test.</p>
+<pre><code class="language-python"><span class="hljs-number">1</span> &gt; <span class="hljs-number">2</span>  <span class="hljs-comment"># false, 1 is not greater then 2</span>
+<span class="hljs-number">1</span> == <span class="hljs-number">2</span> <span class="hljs-comment"># false 1 is not 2</span>
+<span class="hljs-number">1</span> != <span class="hljs-number">2</span> <span class="hljs-comment"># true! 1 is not 2</span>
+<span class="hljs-keyword">not</span> <span class="hljs-number">1</span> == <span class="hljs-number">2</span> <span class="hljs-comment"># true, 1 == 2 is false, not false is true</span>
+</code></pre>
+<h1><a id="Functions_99"></a>Functions</h1>
+<p>Now we can talk about functions, these are bits of code that we can invoke with some params that allow us to reuse code.<br>
+lets start with a simple example, lets say we wanted to write a function to add 2 numbers togther. in simple mathematical notation we’d say</p>
+<pre><code class="language-python">f(x,y) = x + y
+</code></pre>
+<p>i.e we have a function that takes 2 paramaters, x and y and results in x + y. The way we write this in python is</p>
+<pre><code class="language-python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">f</span><span class="hljs-params">(x,y)</span>:</span>
+    <span class="hljs-keyword">return</span> x + y
+</code></pre>
+<p>Well in fact the <code>f</code> can be anything name we want the function to have such as</p>
+<pre><code class="language-python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">add_numbers</span><span class="hljs-params">(x,y)</span>:</span>
+    <span class="hljs-keyword">return</span> x + y
+</code></pre>
+<p>anyway the <code>def</code> says “we are defining a new function”, the name of the function is “f”, it takes in 2 things called x and y and it returns x + y</p>
+<p>Now it may seem weird that we have that colon and then the new line why not do</p>
+<pre><code class="language-python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">f</span><span class="hljs-params">(x,y)</span>:</span> <span class="hljs-keyword">return</span> x+y
+</code></pre>
+<p>well the issue comes when you have more complex functions, lets write a function that returnd 2*x + y</p>
+<pre><code class="language-python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">f</span><span class="hljs-params">(x,y)</span>:</span> x = <span class="hljs-number">2</span>*x <span class="hljs-keyword">return</span> x+y
+</code></pre>
+<p>This is confusing, where does 1 line of code end and the next begin? are we doing 2*(x return x+y)? at what point have we ended our function definition and are now writing a different line of code?<br>
+For these reasons we have to be mroe verbose, we put a colon to indicate a <code>code block</code> is coming so the interperted knows that everything after this colon that is <code>indented</code> is part of this function and once the indentation ends the function is over.</p>
+<pre><code class="language-python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">f</span><span class="hljs-params">(x,y)</span>:</span>
+    x = <span class="hljs-number">2</span>*x
+    <span class="hljs-keyword">return</span> x+y
+</code></pre>
+<p>Ok now we have a function, how do we use it? You can simply invoke it as</p>
+<pre><code class="language-python"> &gt; f(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>)
+ <span class="hljs-number">4</span>
+</code></pre>
+<p>our function returned 4!</p>
+<p>Now other then working in the shell it’s usefull to write all this code in a file and run that, how would we get our output then?<br>
+We can use the print function, this is just like  any function we would write but it’s already been written by a coder and put into our enviornment</p>
+<pre><code class="language-python">print(<span class="hljs-string">"Hello World"</span>)
+</code></pre>
+<p>It takes in a string and shoots it out onto the screen. We can also give print a number</p>
+<pre><code class="language-python">x = f(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>)
+print(x)
+</code></pre>
+<p>Now what do you think the following bit of code will print?</p>
+<pre><code class="language-python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">set_a_to_5</span><span class="hljs-params">(a,b)</span>:</span>
+    a = <span class="hljs-number">5</span>
+a = <span class="hljs-number">1</span>
+set_a_to_5(a)
+print(a)
+</code></pre>
+<p>We get 1, because when a function starts it copies the value of whatever we pass to it into a new variable which gets killed once the function ends. The code inside the function runs in a different <code>scope</code><br>
+python<br>
+Finally sometimes you <em>do</em> want a function that is just 1 line long, something simple, we call these lambdas</p>
+<pre><code class="language-python">&gt; f = <span class="hljs-keyword">lambda</span> x,y: x + y
+&gt; f(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>)
+<span class="hljs-number">3</span>
+</code></pre>
+<p>These pop up a lot in fucntional programming.</p>
     </section>
   </body>
 </html>
