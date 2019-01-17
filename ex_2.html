@@ -15,7 +15,7 @@
     </section>
 
     <section class="main-content">
-        <h1><a></a>Exercise 1</h1>
+        <h1>Exercise 1</h1>
         <p>Write a function that given a file name will read the file and print out how often each letter is used as a percentage (case insensitve)</p>
 <pre><code>count_letters("hello.txt") # assume hello.txt is a file with 1 line in it "HHH"
 a : 0.00%
@@ -47,21 +47,40 @@ z : 0.00%
 <main></main>
 </code></pre>
 <blockquote> Aim to match the 2 decimal places shown above </blockquote>
-        <h1><a></a>Exercise 2</h1>
-        <p>Write a script that given a topic such as `car` via `input` will go to the wikipedia page for that topic and print out the first line</p>
+        <h1>Exercise 2</h1>
+        <p>Write a script that given a topic such as `car` via `input` will go to the wikipedia page for that topic and print out the first line and then ask for more input until the user types in "done"</p>
         <pre><code>$ python my_script.py
 Please enter a topic: car
 A car (or automobile) is a wheeled motor vehicle used for transportation.
+Please enter a topic: done
+Goodbye.
         </code></pre>
-        <h1><a></a>Exercise 3</h1>
-        <p>Write a script that given a topic such as `car` via `input` will go to the wikipedia page for that topic and print out the first line</p>
-        <pre><code>$ python my_script.py
-Please enter a topic: car
-A car (or automobile) is a wheeled motor vehicle used for transportation.
+        <h1>Exercise 3</h1>
+        <p>Write a function that given some key word arguments and a format string prints out a formated string</p>
+        <pre><code>magic("a b c",a=1,b="hello",c="woah") # returns "1 hello woah"
+magic("i love name",name="python") # returns "i love python"
         </code></pre>
+        <blockquote> Hint: you can use the string function `.replace` </blockquote>
+    
+        <h1>Exercise 4</h1>
+        <p>given a csv file as shown below write a function to read in the file and print out the average of each students marks</p>
+        <pre><code>Name,Exam1,Exam2,Exam3
+suzy,12/14,13/14,10/10
+ben,2/14,1/14,0/10
+simon,0/14,0/14,0/10
+</code></pre>
+<pre><code>suzy: 92.86%
+ben: 7.14%
+simon: 0.00%
+    </code></pre>
+        <blockquote> Do this by hand and not with the csv module</blockquote>
+      </section>
 
-    </section>
-
+      <h1>Exercise 5 (optional</h1>
+      <p> Write a script that when given 2 wikipedia topics as a command line arguments will print out if you can get from the first article to the second i.e is there a link to the second page from the first</p>
+      <pre><code>python my_script.py Car Motor_vehicle
+True
+          </code></pre>
   </body>
 </html>
 
