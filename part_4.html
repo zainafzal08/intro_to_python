@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#157878">
     <link rel="stylesheet" href="assets/style.css">
-    
+
   </head>
   <body>
     <section class="page-header">
@@ -16,20 +16,36 @@
 
     <section class="main-content">
 <h1><a id="What_is_a_Class_0"></a>What is a Class</h1>
-<p>So in python you may have noticed that somtimes you can call a function on a data type for example</p>
+<p>So in python you may have noticed that somtimes you can call a function on a data type
+    for example</p>
 <pre><code>&quot;hello&quot;.replace('h','m') --&gt; &quot;mello&quot;
 </code></pre>
-<p>The string seems to have this built in function we can manipulate to replace letters as well as many other functions to turn it into uppercase, lowercase etc. etc. You can imagine if we wanted to write this function ourself we would do</p>
+<p>The string seems to have this built in function we can use to replace letter
+     as well as many other functions to turn it into uppercase,
+     lowercase etc. etc. You can imagine if we wanted to write this function ourselfs we would do</p>
 <pre><code>def replace(string, toReplace, whatToReplaceWith):
-    # the replacement code 
+    # the replacement code
     return newString
 </code></pre>
-<p>You may notice this is essentially the same as above except with the above notation we don’t have to tell replace what string it is operating on, it already knows. And that’s because a string is a <em>OBJECT</em>.</p>
-<p>A object is a collection of data and functions that are aware of one another and the context they exist in. When we do “hello”.upper() we are calling the “upper” function of the string object, and this string object knows that it’s representing the string “hello”</p>
-<p>But you may notice tht although “hello” and “goodbye” are both string objects they arn’t the samea, they represent different strings but any function you can call on hello you can also call on goodbye. This is because a object has a concept of <em>state</em> that is, you can have many objects of the same <em>type</em> (or better said within python <em>class</em>) i,e lots of string objects but each one is individual and can be updated, manipulated and changed independently.</p>
-<p>What they have in common is they are of the same <em>class</em> that is the same basic blueprint of what the object stores and the function it has available, the state the object is in, i.e the exact data it has in it’s store at any one time, is determined by the object. Classes are the blueprints for objects.</p>
+<p>You may notice this is essentially the same as above except with the above notation
+    we don’t have to tell replace what string it is operating on, it already knows.
+    And that’s because a string is a <em>OBJECT</em>.</p>
+<p>A object is a collection of data and functions that are aware of one another
+    and the context they exist in. When we do “hello”.upper() we are calling the “upper” function of
+    the string object, and this string object knows that it’s representing the string “hello”</p>
+<p>But you may notice tht although “hello” and “goodbye” are both string objects they arn’t the same,
+    they represent different strings but any function you can call on hello you can
+    also call on goodbye. This is because a object has a concept of <em>state</em> that is,
+    you can have many objects of the same <em>type</em> (or better said within python <em>class</em>)
+    i.e lots of string objects but each one is individual and can be updated, manipulated and changed
+    independently.</p>
+<p>What they have in common is they are of the same <em>class</em> that is the same basic blueprint
+    of what the object stores and the functions it has available. The state the object is in, i.e
+    the exact data it has in it’s store at any one time, is determined by the object.
+    Classes are the blueprints for objects.</p>
 <h1><a id="Example_23"></a>Example</h1>
-<p>Lets say we have a class called <em>fruits</em> which describes how a fruit behaves, fruits have a name, a number of calories and can be cut.</p>
+<p>Lets say we have a class called <em>fruits</em> which describes how a fruit behaves,
+    fruits have a name, a number of calories and can be cut.</p>
 <pre><code>apple = fruit(&quot;apple&quot;, 120) # make a new fruit (ignore how this works for now)
 orange = fruit(&quot;orange&quot;,300)
 apple.calories      # returns 120
@@ -38,16 +54,33 @@ orange.calroes     # returns 300
 apple.cut()
 orange.cut()
 </code></pre>
-<p>Both apples and orange, because they were created as instances of the fruit class have a claories field and a name field and a cut function but what is in those fields is different.<br>
-In the same way all humans have a heart and a stomach etc but individually the size of those organs and their hair colour changes person to person. They have a defined set of things but the exact definition of those things varies. But because all humans are more or less the same internally then a drug can be designed that works for all humans. if every human was different with different organs and systems then you’d have to make a new drug for every individual.<br>
-Classes let us create objects which conform to some standard so we can interact with data in a defined mannor. If something is a string object we know we can add it to another string object and we know we can uppercase it etc.</p>
+<p>Both apples and oranges, because they were created as instances of the fruit class, have a calories
+    field,a name field and a cut function but what is in those fields is different.<br>
+In the same way all humans have a heart and a stomach etc but individually the size of those organs
+and their hair colour changes person to person.
+They have a defined set of things but the exact definition of those things varies.
+But because all humans are more or less the same internally then a drug can be designed that
+works for all humans. If every human was different with different organs and systems then you’d have
+to make a new drug for every individual.<br>
+Classes let us create objects which conform to some standard so we can interact with data in a
+defined manner. If something is a string object we know we can add it to another
+string object and we know we can uppercase it etc.</p>
 <h1><a id="Why_41"></a>Why</h1>
-<p>Objects and classes don’t add anything special, they are just a way to reason and organise your code, so the question is why use them at all when you can code up anything with just if statements and loops. Partly it’s for convenience, it makes sense to do <code>&quot;hello&quot;.upper()</code> and not have to specify what string you are attempting to manipulate. But often it makes a lot of sense to group code and functions and helps us write cleaner. more bug free and <em>modular</em> code, that is code that is split upneatly into fragements that can be shared, reused, updated and swapped out as needed. A car which has to be entirely replaced whenever one part breaks is just as awful as code which has to be entirely rewritten when one thing needs to change.</p>
-<pre><code>playerHealth = 100 
+<p>Objects and classes don’t add anything special, they are just a way to reason and organise your code,
+     so the question is why use them at all when you can code up anything with just
+     if statements and loops.
+     Partly it’s for convenience, it makes sense to do <code>&quot;hello&quot;.upper()</code>
+     and not have to specify what string you are attempting to manipulate.
+     But often it makes a lot of sense to group code and functions and helps us write cleaner.
+     more bug free and <em>modular</em> code, that is code that is split upneatly into
+     fragements that can be shared, reused, updated and swapped out as needed.
+     A car which has to be entirely replaced whenever one part breaks is just as awful
+     as code which has to be entirely rewritten when one thing needs to change.</p>
+<pre><code>playerHealth = 100
 playerMana = 100
 playerAttacks = [&quot;punch&quot;, &quot;kick&quot;, &quot;cry&quot;]
 
-player2Health = 100 
+player2Health = 100
 player2Mana = 100
 player2Attacks = [&quot;punch&quot;, &quot;kick&quot;, &quot;cry&quot;]
 
@@ -63,16 +96,20 @@ if player1.selectedMove === &quot;spell&quot;:
     player1.cast_spell(player2) # automatically dits player1 mana and player2 health
 </code></pre>
 <h1><a id="Creating_a_class_69"></a>Creating a class</h1>
-<p>So the lifecycle of a class is creation, use and death. We won’t talk about death but objects are automatically killed by python whenever it detects they arn’t being used anymore or when your program ends.</p>
+<p>So the lifecycle of a class is creation, use and death.
+    We won’t talk about death but objects are automatically killed by python whenever it detects
+    they arn’t being used anymore or when your program ends.</p>
 <pre><code>apple = Fruit(&quot;apple&quot;) # creation
-print(apple.name) # use 
+print(apple.name) # use
 </code></pre>
 <p>To define a class you do</p>
 <pre><code>class Fruit:
     &lt;data&gt;
     &lt;functions&gt;
 </code></pre>
-<p>Data is where you can declare what stuff is universal to this class, that is to say what every single object will have predefined. Note that unlike <em>state</em> this doesn’t change object to object. A example would be</p>
+<p>Data is where you can declare what stuff is universal to this class,
+    that is to say what every single object will have predefined.
+    Note that unlike <em>state</em> this doesn’t change object to object. A example would be</p>
 <pre><code>class Human:
     organs = &quot;yes&quot;
     blood = &quot;yes&quot;
@@ -85,7 +122,9 @@ print(apple.name) # use
     def say_hi():
         print(&quot;Hello! I am a hooman&quot;)
 </code></pre>
-<p>Now this is nice but all we’ve done is grouped some variables and functions, lets add state, the first thing we need is a constructor, this is called when the object is created and basically sets it up for use</p>
+<p>Now this is nice but all we’ve done is grouped some variables and functions,
+    lets add state, the first thing we need is a constructor,
+    this is called when the object is created and basically sets it up for use</p>
 <pre><code>class Human:
     organs = &quot;yes&quot;
     blood = &quot;yes&quot;
@@ -99,11 +138,15 @@ print(apple.name) # use
 <pre><code>zain = Human() # prints &quot;I am now born!&quot;
 Human.say_hi() # prints &quot;Hello! I am a hooman&quot;
 </code></pre>
-<p>Now you may notice the constructor has to take in a paramter called self, you may also notice that we called <code>say_hi</code> on the class itself not a object. If you tried to call it on a object like zain you’d get</p>
+<p>Now you may notice the constructor has to take in a paramter called self,
+    you may also notice that we called <code>say_hi</code> on the class itself not a object.
+    If you tried to call it on a object like zain you’d get</p>
 <pre><code>zain.say_hi()
 &gt;&gt; TypeError: say_hi() takes 0 positional arguments but 1 was given
 </code></pre>
-<p>This is confusing but basically everytime you call a function on a object, tha function gets given a reference to that objects state, that is everything the funcion needs to know about particular instance of the class.</p>
+<p>This is confusing but basically everytime you call a function on a object,
+    the function gets given a reference to that objects state, that is everything the funcion needs
+    to know about particular instance of the class.</p>
 <pre><code>class Human:
     organs = &quot;yes&quot;
     blood = &quot;yes&quot;
@@ -112,7 +155,7 @@ Human.say_hi() # prints &quot;Hello! I am a hooman&quot;
         # this name is stored on the objects STATE not globally accross all humans
         self.name = name
         print(&quot;I am now born!&quot;)
-    # say_hi will take in self which is out state and print out the objects name
+    # say_hi will take in self which is our state and print out the objects name
     def say_hi(self):
         print(&quot;Hello! I am a &quot;+self.name)
 </code></pre>
@@ -120,7 +163,11 @@ Human.say_hi() # prints &quot;Hello! I am a hooman&quot;
 zain.say_hi() # prints &quot;Hello! I am a zain&quot;
 </code></pre>
 <h1><a id="self_153"></a>self</h1>
-<p>Now a objects state SHOULD Be quite well defined, everything a object has which is variable should be set up in the constructor, and not change. But python likes to give us options even if we can shoot ourselfes in the foot with it. So you can add things to your <code>self</code> at any point for any reason and update it at will.</p>
+<p>Now a objects state SHOULD Be quite well defined,
+    everything a object has which is variable should be set up in the constructor.
+    But python likes to give us options even if we can shoot ourselves in the foot with it.
+    So you can add things to your <code>self</code> at any point for any reason and update it at will.
+</p>
 <pre><code>zain = Human(&quot;zain&quot;) # prints &quot;I am now born!&quot;
 zain.say_hi() # prints &quot;Hello! I am a zain&quot;
 zain.name = &quot;brain&quot;
@@ -150,10 +197,19 @@ zain.say_hi() # prints &quot;Hello! I am a zain&quot;
 del zain.name # delete the name field
 
 </code></pre>
-<p>The issue with this is that you can create things that didn’t exist at the start which means some functions will work down the life of a object but not at the start or vice versa, this leads to unreliable and complex bugs. So it’s good practice to set up everything you want to use and stick to that, if you want to add a new state variable declare it at the top and give it a initial value and have your object handle it not being ready to use.</p>
+<p>The issue with this is that you can create things that didn’t exist at the start
+    which means some functions will work down the life of a object but not at the start or vice versa,
+    this leads to unreliable and complex bugs.
+    So it’s good practice to set up everything you want to use and stick to that,
+    if you want to add a new state variable declare it at the top and give it a initial value
+    and have your object handle it not being ready to use.</p>
 <h1><a id="magic_193"></a>magic</h1>
-<p>So there are magic functions you can define on your object, most of which look like init i.e <code>__f__</code> the double underscores symbolises functions that are special and will interact with the python runtime.</p>
-<p>the most simple of these is <code>__str__</code>, if python every tried to print out your object or somebody does <code>str(zain)</code> for example. this function will be called so python can interpert your object as a string, for us we would do</p>
+<p>So there are magic functions you can define on your object, most of which look like
+    init i.e <code>__f__</code> the double underscores symbolises functions that are special and
+    will interact with the python runtime.</p>
+<p>the most simple of these is <code>__str__</code>, if python ever tries to print out your object
+    or somebody does <code>str(zain)</code> for example. This function will be called so python
+    can interpert your object as a string, for us we would do</p>
 <pre><code>class Human:
     organs = &quot;yes&quot;
     blood = &quot;yes&quot;
@@ -167,21 +223,26 @@ del zain.name # delete the name field
 zain = Human(&quot;zain&quot;)
 print(zain) # prints out 'This is a human with name zain'
 </code></pre>
-<p>There are heaps but we won’t go through them all just know they exist.</p>
+<p>There are heaps of more magic functions but we won’t go through them all, just know they exist.</p>
 <h1><a id="Inheritance_216"></a>Inheritance</h1>
-<p>Now it’s really common you want some sort of way to order classes in a top down structure of sorts. i.e granny smith is a type of apple which is a type of Fruit.  All fruot shave some common properties and all Apples have some common properties etc. Fruit is a super set of the features of a apple etc. An apple has all the features of a fruit and then some.</p>
+<p>Now it’s really common you want some sort of way to order classes in a
+    top down structure of sorts. i.e granny smith is a type of apple which is a type of Fruit.
+    All fruits have some common properties and all Apples have some common properties etc.
+    Fruit is a super set of the features of a apple etc.
+    An apple has all the features of a fruit and then some.</p>
 <pre><code>Fruits
     Apple
         Granny Smith
         Pink Lady
         ...
 </code></pre>
-<p>This is called inheritance and you can do this in python, what you do is you define your most generic class first</p>
+<p>This is called inheritance and you can do this in python,
+    what you do is you define your most generic class first</p>
 <pre><code>class Fruit:
-    # all fruits have some calories 
+    # all fruits have some calories
     def __init__(self, calories):
         self.calories = calories
-    # all fruits can be cut 
+    # all fruits can be cut
     def cut(self):
         print(&quot;i have been cut&quot;)
 </code></pre>
@@ -191,7 +252,7 @@ class Apple(Fruit):
     def __init__(self):
         # we have to build ourselfs as a fruit first, all apples lets say have 100 calories
         super(self).__init__(100)
-    
+
     # all apples have a crunch function
     def crunch(self):
         print(&quot;[[ C R O N C H ]]&quot;)
@@ -205,9 +266,3 @@ print(apple.calories)  # prints out 100
     </section>
   </body>
 </html>
-
-
-
-
-
-

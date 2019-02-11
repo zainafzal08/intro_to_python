@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#157878">
     <link rel="stylesheet" href="assets/style.css">
-    
+
   </head>
   <body>
     <section class="page-header">
@@ -16,15 +16,35 @@
 
     <section class="main-content">
 <h1><a id="File_IO_0"></a>File IO</h1>
-<p>Obviously the power of a programming language comes from it’s ability to interact with data outside it’s session, i.e files and websites. Both are more or less the same sort of interaction mechanisms, within python the hard work of doing lower level interactions ar ehandled for you and you get just a set of data you can interact with.</p>
-<p>In the backend python does a lot of what you’d expect, it opens connections and handlers and reads specific block sizes and maintains your position in a file but it exposes this as just very simple list like constructs.</p>
-<p>Lets start of with basic file io, we can open a file and get a file object . A object here is just a set of data and functions bundled together, we’ll talk more about it in a later sesh.</p>
+<p>Obviously the power of a programming language comes from it’s ability to
+    interact with data outside it’s session, i.e files and websites.
+    Both are more or less the same sort of interaction mechanisms,
+    within python the hard work of doing lower level interactions are handled for you
+    and you just get  a set of data you can interact with.</p>
+<p>In the backend python does a lot of what you’d expect,
+    it opens connections and handlers and reads specific block sizes
+    and maintains your position in a file but it exposes this as just very simple
+    list like constructs.</p>
+<p>Lets start of with basic file io, we can open a file and get a file object. A object here
+    is just a set of data and functions bundled together,
+    we’ll talk more about it in a later sesh.</p>
 <pre><code>f = open(&quot;text.txt&quot;)
 </code></pre>
-<p>Now we have the file opened and ready to play with but it’s important to note, in the operating system you can have a file in many states. You can open a file as read only and in this way you can’t accidently write over it. You can open a file and have the data returned as text, preprocessed from binary, or you can read the data as raw binary. All of these options are contined in something called a mode string. by default open will use a mode string of <code>&quot;r&quot;</code> which means open a file for reading as text. if we wanted to open a file for reading and writing we would use <code>&quot;r+&quot;</code> i.e</p>
+<p>Now we have the file opened and ready to play with but it’s important to note,
+    in the operating system you can have a file in many states.
+    You can open a file as read only and in this way you can’t accidently write over it.
+    You can open a file and have the data returned as text, preprocessed from binary,
+    or you can read the data as raw binary. All of these options are contained in something
+    called a mode string. by default open will use a mode string of <code>&quot;r&quot;</code>
+    which means open a file for reading as text.
+    If we wanted to open a file for reading and writing we would use <code>&quot;r+&quot;</code> i.e</p>
 <pre><code>f = open(&quot;text.txt&quot;,&quot;r+&quot;)
 </code></pre>
-<p>But you have to be careful, opening a file for writing will automatically clear the file before you start, to keep a file as is and just write to the end of the file you would use the append mode i.e “a”. You can also specify that you want this file to be interacted with in binary instead of text with “rb” or “wb”. You can read about open at <a href="https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files">the python doc page</a></p>
+<p>But you have to be careful, opening a file for writing will automatically clear the file
+    before you start, to keep a file as is and just write to the end of the file you would use
+    the append mode i.e “a”. You can also specify that you want this file to be interacted with
+    in binary instead of text with “rb” or “wb”.
+    You can read about open at <a href="https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files">the python doc page</a></p>
 <p>Now that we have our file we can read or write to it with <code>f.read()</code> or <code>f.write()</code></p>
 <pre><code>f = open(&quot;test.txt&quot;,&quot;w&quot;)
 f.write(&quot;I am so smart&quot;)
@@ -40,7 +60,9 @@ I am so smartireallymasmart
 f.write(&quot;I am so smart\n&quot;)
 f.write(&quot;i really am smart&quot;)
 </code></pre>
-<p>just like all other ascii characters we talked about <code>\n</code> is one of them. It’s just like <code>A</code> or <code>b</code> but it has a special meaning in that it tells your computer that when displaying this text, put a line break here.<br>
+<p>just like all other ascii characters we talked about <code>\n</code> is one of them.
+    It’s just like <code>A</code> or <code>b</code> but it has a special meaning in that it
+    tells your computer that when displaying this text, put a line break here.<br>
 But since it’s just like any other character you can use it in strings and split by it etc.</p>
 <p>Ok now one thing i’ve glossed over, you need to close your files</p>
 <pre><code>f = open(&quot;test.txt&quot;,&quot;w&quot;)
@@ -48,34 +70,46 @@ f.write(&quot;I am so smart\n&quot;)
 f.write(&quot;i really am smart&quot;)
 f.close()
 </code></pre>
-<p>If you don’t close your files you won’t suddenly get cancer and die but a program that doesn’t close files but keeps opening them will run into issues with speed and memory. In addition other programs may think twice about accessing the file if you have a open connection to it.<br>
-Now it’s very easy to forget to close the file, so files use a build in feature of python called a <code>with</code> statement to build in automatic closing.</p>
+<p>If you don’t close your files you won’t suddenly get cancer and die but a program
+    that doesn’t close files but keeps opening them will run into issues with speed and memory.
+    In addition other programs may think twice about accessing the file if you have a open connection
+    to it.<br>
+Now it’s very easy to forget to close the file, so files use a build in feature of python
+called a <code>with</code> statement to build in automatic closing.</p>
 <pre><code>with open(&quot;test.txt&quot;,&quot;w&quot;) as f:
     f.write(&quot;hi!\n&quot;)
 </code></pre>
-<p>here the f is opened but only lives for the scope of the indendeted block. Afterwards it automatically gets closed. For this reason you should <em>always</em> use a with statement, it’s there to make your life easier so let it.</p>
+<p>here the f is opened but only lives for the scope of the indendeted block.
+    Afterwards it automatically gets closed. For this reason you should <em>always</em> use a
+    with statement, it’s there to make your life easier so let it.</p>
 <h1><a id="Reading_data_62"></a>Reading data</h1>
-<p>now when reading data with <code>f.read()</code> you can give it a count of characters (or bytes depending on mode) to read in, i,e</p>
+<p>now when reading data with <code>f.read()</code> you can give it a
+    count of characters (or bytes depending on mode) to read in, i,e</p>
 <pre><code>f.read(10) // read 10 characters
 </code></pre>
-<p>You can also not specify a length,` what this means is that if you try and put this into a variable python will read the entire file for you.</p>
-<pre><code>text = f.read() // read the whole file into the variable text 
+<p>You can also not specify a length, what this means is that if you try and put this into
+    a variable python will read the entire file for you.</p>
+<pre><code>text = f.read() // read the whole file into the variable text
 </code></pre>
-<p>Now it’s usually not useful to process a file character by character, we usually work in lines, so you can use</p>
+<p>Now it’s usually not useful to process a file character by character, we usually work in lines,
+    so you can use</p>
 <pre><code>with open(&quot;test&quot;,&quot;w&quot;) as f:
     f.write(&quot;hello\nworld&quot;)
 with open(&quot;test&quot;,&quot;r&quot;) as f:
-    l = f.readline() # read 1 line from the file 
+    l = f.readline() # read 1 line from the file
     l2 = f.readlines() # reads all lines for a file, returns a list of lines
     print(l2) # what would this print?
 </code></pre>
-<p>It’s also important to remember that readlines doesn’t <em>strip</em> the new line, f.readline above would return <code>hello\n</code> so if you printed it you’d get 2 new lines. This is  easy fix, for any string where you wanna cut off any trailing space/new lines we can  do <code>line.strip()</code></p>
+<p>It’s also important to remember that readlines doesn’t <em>strip</em> the new line,
+    f.readline above would return <code>hello\n</code> so if you printed it you’d get 2 new lines.
+    This is  easy fix, for any string where you wanna cut off any trailing space/new lines we can
+    do <code>line.strip()</code></p>
 <h1><a id="User_Interaction_89"></a>User Interaction</h1>
 <p>It’s common to ask a user of your script for some input and python makes that super easy</p>
-<pre><code>i = input(&quot;hello tell me your name: &quot;)
-# i will be the response from the user
+<pre><code>i = input(&quot;hello tell me your name: &quot;) # i will be the response from the user
 </code></pre>
-<p>If the user presses <code>ctrl-c</code> or similar input will raise a Exception (covered more later) which ends your program.</p>
+<p>If the user presses <code>ctrl-c</code> or similar input will raise a
+    Exception which ends your program.</p>
 <h1><a id="Sysargv_99"></a>Sys.argv</h1>
 <p>Now when you run a python file you so do as</p>
 <pre><code>python script.py
@@ -84,38 +118,55 @@ with open(&quot;test&quot;,&quot;r&quot;) as f:
 <pre><code>python script.py arg1 arg2 arg3
 </code></pre>
 <blockquote>
-<p>If you are using pyCharm or something else it’ll do this for you, look around there is a preferences panel where you can specify command line arguments</p>
+<p>If you are using pyCharm or something else it’ll do this for you,
+    look around there is a preferences panel where you can specify command line arguments</p>
 </blockquote>
 <p>you can access these via</p>
-<pre><code>import sys 
+<pre><code>import sys
 sys.argv # list of arguments
 #Note that argv includes the script name
 print(sys.argv) # prints [&quot;script.py&quot;, &quot;arg1&quot;, &quot;arg2&quot;, &quot;arg3&quot;]
 </code></pre>
 <h1><a id="The_internet_124"></a>The internet</h1>
-<p>Now in much the same way as files we can read a webpage and search around it, you can do this by hand with some good text searching and HTTP but there are packages to make this way easier. Lets start of with Requests.</p>
-<p>This is a library to make it super easy to interact with web servers. Networking and internet protocols are a bit out of the scope of a intro to python lesson so just to explain the absolute basics, the way the internet works is you send a request to a server who will read this request and then complete it or reject it. A server will reject a request if you did something wrong, i.e you arn’t logged in or the request you made didn’t make sense.</p>
+<p>Now in much the same way as files we can read a webpage and search around it,
+    you can do this by hand with some good text searching and HTTP but there are packages
+    to make this way easier. Lets start of with Requests.</p>
+<p>This is a library to make it super easy to interact with web servers.
+    Networking and internet protocols are a bit out of the scope of a intro to python lesson so just
+    to explain the absolute basics, the way the internet works is you send a request to a server
+    who will read this request and then complete it or reject it.
+    A server will reject a request if you did something wrong, i.e you arn’t logged in or
+    the request you made didn’t make sense. It can also reject it if something went wrong, the server is overloaded or buggy for example. </p>
 <pre><code>+ ------- +    ====[pls give me google.com]===&gt;    + -------------- +
 |  chrome |                                        | google server  |
 + ------- +   &lt;======[here is google.com]=======   + -------------- +
 </code></pre>
-<p>Other then requesting resourcs you can also give some data to the server, for example if you are making a instagram post, or you can ask the server to delete some data, such as deleting a instagram post etc. etc. The one you will almost always be working with is a <code>GET</code> request where you ask a server for something, in most cases this will be a website.<br>
-If you decide to start using API you will have to use more different types of requests but it’s not too hard to pick up.</p>
-<pre><code>import requests                               # you may have to install this 
+<p>Other then requesting resources you can also give some data to the server,
+    for example if you are making a instagram post, or you can ask the server to delete some data,
+    such as deleting a instagram post etc. etc.
+    The one you will almost always be working with is a <code>GET</code> request where you ask a
+    server for something, in most cases this will be a website.<br>
+If you decide to start using API's you will have to use a larger variety of requests but it’s not
+too hard to pick up so we are going to focus on GET</p>
+<pre><code>import requests                               # you may have to install this
 r = requests.get(&quot;https://www.google.com&quot;)    # send a request to the google server asking for their home page
 print(r)                                      # r will have the response and has a bunch of information, a lot of it we don't care, we just care about 2 things
 print(r.status_code)                          # status code will tell us if the server accepted our request and sent a response, 200 = all good, 404 = unknown page etc.
-print(r.text)                                 # r.text is the response as text, this is whatever the server gave us, ususally a HTML page. 
+print(r.text)                                 # r.text is the response as text, this is whatever the server gave us, ususally a HTML page.
 </code></pre>
-<p>Now if you are doing a lot of these requests this will be very slow, and you should have a chat with someone about async programming, multi threaded IO, web sessions and connection pooling. But for now we’re gonna stick with this basic structure.</p>
-<p>Once you have the page you can either search through it for what’s important or convert it into a tree like structure that you can walk. The latter is a lot more scaleable.</p>
+<p>Now if you are doing a lot of these requests this will be very slow,
+    and you should have a chat with someone about async programming, multi threaded IO,
+    web sessions and connection pooling. But for now we’re gonna stick with this basic structure.</p>
+<p>Once you have the page you can either search through it for what’s important
+    or convert it into a tree like structure that you can walk.
+    The latter is a lot more scaleable.</p>
 <pre><code>import requests
 from bs4 import BeautifulSoup
 
 r = requests.get(&quot;https://www.google.com&quot;)
 soup = BeautifulSoup(r.text, 'html.parser')
 
-soup builds a tree and indexes all the stuff on the page so we can query it. 
+# soup builds a tree and indexes all the stuff on the page so we can query it.
 print(soup.title.name) # prints out the title of the page, in this case 'Google'
 </code></pre>
 <p>You can check out more info here:</p>
@@ -124,11 +175,14 @@ print(soup.title.name) # prints out the title of the page, in this case 'Google'
 <li><a href="https://www.crummy.com/software/BeautifulSoup/bs4/doc/">soup</a></li>
 </ul>
 <h1><a id="Dictionaries_166"></a>Dictionaries</h1>
-<p>These are SUPER useful data structures in python, they let us map one thing to another. Consider this</p>
-<pre><code>d = {}          # make a empty dictionary 
+<p>These are SUPER useful data structures in python, they let us map one thing to another.
+    Consider this</p>
+<pre><code>d = {}          # make a empty dictionary
 d[&quot;zain&quot;] = 2   # the string &quot;zain&quot; maps to the number 2
 </code></pre>
-<p>The way these work in the backend make them not only very nice to use but also super quick. Whenever you want to have a way to convert one thing into another quickily use a map first. It also really helps for counting things, consider this example</p>
+<p>The way these work in the backend make them not only very nice to use but also super quick.
+    Whenever you want to have a way to convert one thing into another quickily use a dict first.
+    It also really helps for counting things, consider this example</p>
 <pre><code>d = {}
 d[&quot;apple&quot;] = 0
 d[&quot;pear&quot;] = 0
@@ -136,12 +190,15 @@ for x in [&quot;apples&quot;,&quot;pear&quot;,&quot;pear&quot;,&quot;pear&quot;,
     d[x]+=1
 print(d)
 </code></pre>
-<p>We’ll print out the dictionary and it’ll say <code>d[&quot;apple&quot;]: 2</code>, helping us count the number of each item in a list.</p>
+<p>We’ll print out the dictionary and it’ll say <code>d[&quot;apple&quot;]: 2</code>,
+    helping us count the number of each item in a list.</p>
 <blockquote>
 <p>Do note of course these are case sensitive “Apple” != “apple”</p>
 </blockquote>
-<p>you can have really anything map to anything else, the thing you put in the brackets is called the <em>key</em> and the thing it maps to is called a <em>value</em></p>
-<pre><code># you can also decalre some values into a dict at time of creation
+<p>you can have really anything map to anything else,
+    the thing you put in the brackets is called the <em>key</em> and the thing it maps to is
+    called a <em>value</em></p>
+<pre><code># you can also declare some values into a dict at time of creation
 d = {
     &quot;hello&quot;: 1     # the key &quot;hello&quot; maps to the number 1,
     1: &quot;what&quot;      # the number 1 maps to the string &quot;what&quot;
@@ -162,18 +219,26 @@ d = {}
 d[100] = 1
 print(d)
 </code></pre>
-<p>The line <code>l[100] = 1</code> will fail, the list doesn’t have 100 elements, you’d have to make a list with 100 cells and set the 100th one to 1, that’s wasteful if you only want to store the value for 100.</p>
-<p>Ok so why not use a dict everywhere? Dicts are bad for iterations, it’s annoying to append increasing values to them and if you want to iterate over all the values you have to do</p>
+<p>The line <code>l[100] = 1</code> will fail, the list doesn’t have 100 elements,
+    you’d have to make a list with 100 cells and set the 100th one to 1,
+    that’s wasteful if you only want to store the value for 100.</p>
+<p>Ok so why not use a dict everywhere? Dicts are bad for iterations,
+    it’s annoying to append increasing values to them and if you want to iterate over
+    all the values you have to do</p>
 <p>for value in d.values():<br>
 print(value)</p>
-<p>and until recently youe ouput would be jumbled, in no paritcular order (a recent update actually made it that dicts always return values in the order they were inserted but that’s pretty cutting edge)</p>
+<p>and until recently your output would be jumbled, i.e in no paritcular order
+    (a recent update actually made it that dicts always return values in the order
+    they were inserted but that’s somewhat cutting edge)</p>
 <p>In addition lists are better then dicts when it comes to reading and writings sets of data.</p>
-<p>Lastly if you try and get a value with a key that the dict doesn’t know about you get a key error but you can check for a key very easily</p>
+<p>Lastly if you try and get a value with a key that the dict doesn’t know about you get a key error
+    but you can check for a key very easily</p>
 <pre><code>d = {&quot;zain&quot;: 1}
 if &quot;zain&quot; in d:
     print(d[&quot;zain&quot;])
 </code></pre>
-<p>Even easier you can use <code>get</code> to get a value and if it doesn’t exist return a default instead of crashing</p>
+<p>Even easier you can use <code>get</code> to get a value and if it doesn’t exist
+    return a default instead of crashing</p>
 <pre><code>print(d.get(&quot;zain&quot;,None)) # prints value of zain if it exists otherwise print None
 </code></pre>
 <h1><a id="Dynamic_Functions_246"></a>Dynamic Functions</h1>
@@ -181,54 +246,58 @@ if &quot;zain&quot; in d:
 <pre><code>def f(a,b,c):
     print(a,b,c)
 </code></pre>
-<p>but obviously sometimes that doesn’t work, for example, print needs to be able to take any number of elements</p>
+<p>but obviously sometimes that doesn’t work,
+    for example, print needs to be able to take any number of elements</p>
 <pre><code>print(a,b,c,d,e,f)
 </code></pre>
 <p>The way it does this is by having a catch all</p>
 <pre><code>def f(*args):
     print(args)
 </code></pre>
-<p>The star means that let a user enter in any number of arguments and just package them into a list called args that i can access. You can put this at the end of your normal functions as well</p>
+<p>The star means that let a user enter in any number of arguments and just package them into a
+    list called args that i can access.
+    You can put this at the end of your normal "positional" arguments as well</p>
 <pre><code>def f(a,b,*args):
     print(a,b,args)
 </code></pre>
-<p>Here a and b must be given, they are positional paramaters but after that you can have 0 or more args.</p>
-<pre><code>f(1,2) # good 
-f(1,2,3,4,5,6,7) # god 
+<p>Here a and b must be given, they are positional paramaters but after that you can have
+    0 or more args.</p>
+<pre><code>f(1,2) # good
+f(1,2,3,4,5,6,7) # good
 f(1) # bad! need a AND b
 </code></pre>
-<p>You can do this again but with <em>keyword</em> arguments. So lets quickly go over how you can give things default values</p>
+<p>You can do this again but with <em>keyword</em> arguments.
+    but first lets quickly go over how you can give things default values</p>
 <pre><code>def f(a,b=2):
     print(a,b)
 </code></pre>
 <p>what this means is that you can have a and b but if someone doesn’t give you b, assume its’ 2</p>
-<pre><code>f(1,2)   # goo
+<pre><code>f(1,2)   # good
 f(1)     # good
 f(1,2,3) # bad, will fail
 f()      # will fail
 </code></pre>
-<p>Now a different concept to this is keyword params, obviously it gets difficult to remember where what goes</p>
-<pre><code>open(&quot;rb&quot;,&quot;test.txt&quot;)  # this will fail because it's filename, mode not mode,filename
+<p>Now a different concept to this is keyword params, obviously it gets difficult to remember
+    where what goes</p>
+<pre><code>open(&quot;rb&quot;,&quot;test.txt&quot;)  # this will fail because it's (filename, mode) not (mode, filename)
 </code></pre>
-<p>Remebering the calling structure for every function is a bit annoying so in python you can just tell the function exactly what you mean</p>
+<p>Remebering the calling structure for every function is a bit annoying
+    so in python you can just tell the function exactly what you mean</p>
 <pre><code>def f(a,b):
     print(a,b)
 
 f(b=2,a=1) # prints 1,2
 </code></pre>
-<p>of course what if we wanted users to be able to enter in any keywords they wanted? we use <code>**kargs</code> kargs is a standard, it stands for keyword arguments but you can all your variable anything <code>**a</code> works just as well</p>
+<p>of course what if we wanted users to be able to enter in any keywords they wanted?
+    we use <code>**kargs</code> kargs is a standard, it stands for keyword arguments but
+    you can all your variable anything <code>**a</code> works just as well</p>
 <pre><code>def f(a,b,**kargs):
     print(kargs)
 </code></pre>
-<p>Here a and b are mandatory and then you can give any amount of key word arguments that get passed into the function as a <em>dict</em></p>
-<pre><code>f(1,2,hello=&quot;world&quot;,big=&quot;money&quot;) # prints out {&quot;hello&quot;:&quot;world&quot;,&quot;big&quot;:&quot;money&quot;} or similar 
+<p>Here a and b are mandatory and then you can give any amount of key word arguments
+    that get passed into the function as a <em>dict</em></p>
+<pre><code>f(1,2,hello=&quot;world&quot;,big=&quot;money&quot;) # prints out {&quot;hello&quot;:&quot;world&quot;,&quot;big&quot;:&quot;money&quot;} or similar
 </code></pre>
     </section>
   </body>
 </html>
-
-
-
-
-
-

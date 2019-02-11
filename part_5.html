@@ -20,14 +20,19 @@
         point the state of the program is something you didn't exepct it to be.
         It's easy to reason that if at every point your program is in a correct state then the
         answer it produces must also be correct. </p>
-      <p> Thus debuggers are usually geared at giving you information of the program and it's state as it executes.
-        If you can find where the state goes ary you can fix it. Before we get to debuggers though it's important to structure your code in a way that isolates code from each other.
-        If you have 1000 lines of code in one function and the function returns the wrong result then the bug can be anywhere in the 1000 lines. BUT
-        if you have 1000 lines of code split up into 50 functions you can find which function is the one that's returning the wrong value and know in the 10 or so lines of that function the bug exists. Reduces your search space
-        By a lot.
+      <p> Thus debuggers are usually geared at giving you information of the program and
+        it's state as it executes. If you can find where the state goes ary you can fix it.
+        Before we get to debuggers though it's important to structure your code in a way that
+        isolates code from each other. If you have 1000 lines of code in one function and the function
+        returns the wrong result, then the bug can be anywhere in the 1000 lines. BUT
+        if you have 1000 lines of code split up into 50 functions you can find which function is the
+        one that's returning the wrong value and know that in the 10 or so lines of that function,
+        the bug exists. This reduces your search spaceBy a lot.
       </p>
-      <p> There are countless reasons why splitting code up into slef contained functions are good, this is just one of them</p>
-      <p> Consider the examples below </p>
+      <p> There are countless reasons why splitting code up into slef contained functions are good,
+        this is just one of them</p>
+      <p> Consider the examples below which contains a bug,
+        observe how it's easier to narrow down where the bug might be once you have a extra function.  </p>
       <pre><code>
 # Produces the intersection of two lists
 def intersection(a,b):
@@ -38,19 +43,22 @@ def intersection(a,b):
     while j &lt; len(b):
       if a[i] == b[j]:
         c.append(a[i])
-    j += 1
+      j += 1
     i += 1
-  return False
+  return c
 
 # intersection([1,2,3],[1,2,3]) returns  [1]
 </code></pre>
 <pre><code>
 def in_list(e, b, j):
+  result = False
   while j &lt; len(b):
       if a[i] == b[j]:
-          return True
+          result = True
+          break;
       j += 1
-  return False
+  print(result)
+  return result
 
 def intersection(a,b):
   i = 0
@@ -63,32 +71,36 @@ def intersection(a,b):
   return c
 
 # intersection([1,2,3],[1,2,3]) == [1]
-# in_list returns True, False, False over program
+# in_list prints True, False, False
     </code></pre>
 
     <p> A debugger works by letting us pause the program and step through it slowly
-      observing state so for the above we can set a _breakpoint_ basically a point at which
-      we want the program to pause and alert us on line 1 of the function
+      observing state. So for the above we can set a _breakpoint_ (basically a point at which
+      we want the program to pause and alert us) on line 1 of the function
     </p>
     <p>
-      Once we've paused we can observe variables and we can step through the program. There are 4 main
-      ways you traverse a progream.
+      Once we've paused we can observe variables and we can step through the program.
+      There are 4 main ways you traverse a progream.
       <ul>
         <li> Step - step thorugh ever single line of the code line by line </li>
-        <li> Step Over - step thorugh ever single line of the code line by line but don't decend into functions</li>
+        <li> Step Over - step thorugh ever single line of the code line by line
+          but don't decend into functions</li>
         <li> Step Out - run all the code until the function ends. </li>
         <li> Continue - run the code normally until the next break point </li>
       </ul>
     </p>
 
     <h1><a id="Regex_0"></a>Regex</h1>
-      <p>Regex is short for a “Regular Expression”, They are a way to describe a language, in our cases they let us susinctly describe a subset of every possible combination of ascii chracters.</p>
-      <p>let’s say you had a bunch of words and you wanted to extract every 3 letter word which ended with ‘ay’, i.e if you were given</p>
+      <p>Regex is short for a “Regular Expression”,
+        They are a way to describe a language, in our cases they let us susinctly describe a
+        subset of every possible combination of ascii chracters.</p>
+      <p>let’s say you had a bunch of words and you wanted to extract every 3
+        letter word which ended with ‘ay’, i.e if you were given</p>
       <pre><code>hello
 goodbye
 friday
 day
-rays
+ray
 pay
       </code></pre>
       <p>You’d get</p>
@@ -96,18 +108,40 @@ pay
 ray
 pay
       </code></pre>
-      <p>Now if you wanted to specify this language, that is you wanted to convay to someone what text was allowed in this subset you could day “the words in my language are aay bay cay day …” but really you could say it better as “&lt;any letter&gt;ay”</p>
-      <p>And this is what regular expressiosn do, they let us describe a language without specifying every possibility. For example in regular expressions the dot character <code>.</code> represents “any character in the symbol set” which for us means any ascii character A-Za-z0-9 etc. So the above could be expressed as <code>.ay</code> any character followed by a <code>ay</code><br>
-      lets say you wanted to express every possible <code>hey</code> where the number of <code>e</code>'s are variable i.e <code>heey</code> <code>hey</code> <code>heeeeeeey</code>, You couldn’t list every option even if you tried since you can put infinity e’s in between the h and the y. So intead you say <code>he+y</code> the <code>+</code> Symbolises that there can be 1 or more <code>e</code> between the h and the y. What if you wanted 0 e’s to be a option so <code>hy</code> is also in your langage? just use <code>*</code>  which means 0 or more <code>he*y</code></p>
-      <p>Now the power comes in that via some nifty algorithms from formal languages  and linguistics you can convert any regular expression into a program which will tell you if a input string matches the pattern or not. Almost every programming language has this feature now days</p>
+      <p>Now if you wanted to specify this language, that is you wanted to convay to someone
+        what text was allowed in this subset you could day “the words in my language are
+        aay bay cay day …” but really you could say it better as “&lt;any letter&gt;ay”</p>
+      <p>And this is what regular expressiosn do, they let us describe a language without
+        specifying every possibility. For example in regular expressions the dot
+        character <code>.</code> represents “any character in the symbol set” which for us means an
+        ascii character A-Za-z0-9 etc.
+        So the above could be expressed as <code>.ay</code> any character followed by a <code>ay</code><br>
+      lets say you wanted to express every possible <code>hey</code> where the number of <code>e</code>'s
+      are variable i.e <code>heey</code> <code>hey</code> <code>heeeeeeey</code>, You couldn’t list every
+      option even if you tried since you can put infinity e’s in between the h and the y.
+      So intead you say <code>he+y</code> the <code>+</code> Symbolises that there can be 1 or more
+      <code>e</code> between the h and the y. What if you wanted 0 e’s to be a option so
+      <code>hy</code> is also in your langage? just use <code>*</code>  which means 0 or more
+      <code>he*y</code></p>
+      <p>Now the power comes in that via some nifty algorithms from formal languages and linguistics
+        you can convert any regular expression into a program which will tell you if a input
+        string matches the pattern or not. Almost every programming language has this
+        feature now days</p>
       <pre><code>import re
 if re.match('he*y',&quot;heeeeeey&quot;):
     print(&quot;hello!&quot;)
       </code></pre>
       <p>will print out hello because “heeeeeey” is in the language specified by “he*y”</p>
-      <p>you can match any sentence with starts with “please” via <code>^please.*</code> the <code>^</code> means the start of input, nothing should come before the first p. you can do a similar thing with <code>$</code> to represent the end of input.</p>
-      <p>There is also the concept of escaping, given the above how would you specify the string <code>f*ck</code>, if you just used that you'd match <code>ffffffffck</code>, you can escape a special character basically telling regex to treat it like any other character as such <code>f\*uck</code></code></p>
-      <p>There are more details but most of them are more fun to figure out live. Have a crack --&gt; <a href="https://alf.nu/RegexGolf">https://alf.nu/RegexGolf</a></p>
+      <p>you can match any sentence with starts with
+        “please” via <code>^please.*</code> the <code>^</code> means the start of input,
+        nothing should come before the first p. You can do a similar thing with
+        <code>$</code> to represent the end of input.</p>
+      <p>There is also the concept of escaping, given the above how would you specify the string
+        <code>f*ck</code>, if you just used that you'd match <code>ffffffffck</code>,
+        you can escape a special character basically telling regex to treat it like any
+        other character as such <code>f\*uck</code></code></p>
+      <p>There are more details but most of them are more fun to figure out live.
+        Have a crack --&gt; <a href="https://alf.nu/RegexGolf">https://alf.nu/RegexGolf</a></p>
     </section>
   </body>
 </html>

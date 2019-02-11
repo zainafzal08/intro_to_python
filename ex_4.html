@@ -19,11 +19,14 @@
 <h1>Exercise 1</h1>
 <p>
 Write a python program that given some messages stolen from a messaging app can extract
-if the message contains some reference to a time. It should take in a message from `input()` and produce a python
+if the message contains some reference to a time.
+It should take in a message from <code>input()</code> and produce a python
 datetime object that it then prints out.
-There is no strict scope on purpose, try to see if your program can handle anything that you could see a person saying to
-refer to a time. below are only some examples. Obviously if you can't deduce all the info from the message you have to make suitable assumptions.
-if you just say Friday assume it means the comming friday for example.
+There is no strict scope here on purpose, try to see if your program can handle anything
+that you could see a person saying to refer to a time.
+Below are only some examples. Obviously if you can't deduce all the info from the
+message you have to make suitable assumptions. i.e If you just say Friday assume
+it means the coming friday.
 <blockquote> Assume the below code was run Feb 7th 2019 at 8:41</blockquote>
 </p>
 <pre><code>> now
@@ -62,13 +65,14 @@ if you just say Friday assume it means the comming friday for example.
 </code></pre>
 
 <h1>Exercise 2</h1>
-<p>
-  Although we may run out of time it would be cool to have you guys build a slack bot still.
-  So write a python class with at least 1 function called <code> talk </code> which
-  given a slack message will return a response. If your class has no response return <code>None</code>You can code up this class to do whatever, return the current weather if someone asks for it, process a math equation etc.
-  Just make sure that if your bot has a trigger phrase so <code>what's the weather</code> does nothing but <code>hey weatherbot, what's the weather</code> returns a response.
+<p>Write a python class with at least 1 function called <code> talk </code> which
+  given a slack message will return a response.
+  If your class has no response return <code>None</code>You can code up this class to do whatever
+  but it should be able to print the current weather.
+  Just make sure that if your bot has a trigger phrase so <code>what's the weather</code>
+  does nothing but <code>hey weatherbot, what's the weather</code> returns a response.
 </p>
-<blockquote>Below is a example if you wanted to build a weather bot </blockquote>
+<blockquote>Below is a example </blockquote>
 <pre><code>> now
 > weather bot, what's the weather tomorrow
 it will be 23 degrees tomorrow in sydney
@@ -76,9 +80,5 @@ it will be 23 degrees tomorrow in sydney
 it will be -10 degrees tomorrow in chiago
 ...
     </code></pre>
-    <p>
-      You can add/remove as many features as you like but start small.
-      Remember if the bot shouldn't respond to a message it should return none, the bot will recieve every message in the channel it is in so it needs to be able to ignore some messages.
-    </p>
   </body>
 </html>
