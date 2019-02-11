@@ -6,7 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#157878">
     <link rel="stylesheet" href="assets/style.css">
-
+    <style>
+        .hidden {
+          display: none;
+        }
+        </style>
   </head>
   <body>
     <section class="page-header">
@@ -80,5 +84,16 @@ it will be 23 degrees tomorrow in sydney
 it will be -10 degrees tomorrow in chiago
 ...
     </code></pre>
+    <script>
+        window.onload = () => {
+          if(window.location.href.split("#")[1] === "sol") {
+            const l = document.getElementsByClassName("item");
+            for (elem of l) {
+              console.log(elem);
+              elem.classList.remove("hidden");
+            }
+          }
+        }
+      </script>
   </body>
 </html>

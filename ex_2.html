@@ -6,7 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#157878">
     <link rel="stylesheet" href="assets/style.css">
-
+    <style>
+        .hidden {
+          display: none;
+        }
+        </style>
   </head>
   <body>
     <section class="page-header">
@@ -47,7 +51,23 @@ y : 0.00%
 z : 0.00%
 </code></pre>
 <blockquote> Aim to match the 2 decimal places shown above </blockquote>
-        <h1>Exercise 2</h1>
+<div class="item hidden">
+    <h2><a></a>Solution</h2>
+<pre><code>def count_file(file):
+    counts = {}
+    with open(file) as f:
+      for c in f.read():
+        c = c.lower()
+        if c == ' ':
+          continue
+        if c not in counts:
+          counts[c] = 0
+        counts[c] += 1
+    for k in counts.keys():
+      print(f"k : {round(counts[k],2)}%")
+</code></pre>
+</div>
+<h1>Exercise 2</h1>
         <p>Write a script that given a topic such as <code>car</code> via <code>input</code> will go to the wikipedia page for that topic and print out the first line and then ask for more input until the user types in "done"</p>
         <pre><code>$ python my_script.py
 Please enter a topic: car
@@ -55,6 +75,27 @@ A car (or automobile) is a wheeled motor vehicle used for transportation.
 Please enter a topic: done
 Goodbye.
         </code></pre>
+        <div class="item hidden">
+            <h2><a></a>Solution</h2>
+    <pre><code>print('What would you like to learn about?')
+learn = True
+while learn:
+    page = str(input('>').lower())
+    if page != 'done':
+        wiki = requests.get("https://en.wikipedia.org/wiki/"+str(page))
+        soup = BeautifulSoup(wiki.text, 'html.parser')
+        Z = soup.body.table.next_sibling.next_sibling
+        text = Z.get_text()
+        text = str(text)
+        sentence = text.split('.')
+        print(sentence[0] + '.')
+        print('what else?')
+
+    else:
+        learn = False
+        print("\nGoodbye")
+    </code></pre>
+        </div>
         <h1>Exercise 3</h1>
         <p>Write a function that given some key word arguments and a
           format string prints out a formated string</p>
@@ -62,7 +103,18 @@ Goodbye.
 magic("i love name",name="python") # returns "i love python"
         </code></pre>
         <blockquote> Hint: you can use the string function `.replace` </blockquote>
-
+        <div class="item hidden">
+            <h2><a></a>Solution</h2>
+    <pre><code>def magic(string, **kargs):
+    separate = string.split()
+    for i, element in enumerate(separate):
+        try:
+            separate[i]=kargs[element]
+        except:
+            pass
+    print(" ".join(separate))
+    </code></pre>
+        </div>
         <h1>Exercise 4</h1>
         <p>given a csv file as shown below write a function to read in the
           file and print out the average of each students marks</p>
@@ -76,7 +128,23 @@ ben: 7.14%
 simon: 0.00%
     </code></pre>
         <blockquote> Do this by hand and not with the csv module</blockquote>
+        <div class="item hidden">
+            <h2><a></a>Solution</h2>
+    <pre><code>def average(mark):
+    names = []
+    marks = []
+    # will not cover all cases of csv's but good enough
+    # to handle strings and escaped ','s use the csv module
+    with open(mark) as f:
+        for line in f.readlines():
+            row = line.split(",")
+            # fair warning, eval is nice for cases like this
+            # but you should _never_ use it in production code
+            average = sum([eval(x) for x in row[1:]])/len(row[1:])
+            print(f'{row[0]}: {round(average,2)}%')
 
+    </code></pre>
+        </div>
       <h1>Exercise 5 (optional)</h1>
       <p> Write a script that when given 2 wikipedia topics as a command line arguments
         will print out if you can get from the first article to the second i.e is there a link
@@ -85,5 +153,16 @@ simon: 0.00%
 True
           </code></pre>
         </section>
+        <script>
+            window.onload = () => {
+              if(window.location.href.split("#")[1] === "sol") {
+                const l = document.getElementsByClassName("item");
+                for (elem of l) {
+                  console.log(elem);
+                  elem.classList.remove("hidden");
+                }
+              }
+            }
+          </script>
   </body>
 </html>

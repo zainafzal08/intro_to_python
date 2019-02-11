@@ -6,7 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#157878">
     <link rel="stylesheet" href="assets/style.css">
-
+    <style>
+        .hidden {
+          display: none;
+        }
+        </style>
   </head>
   <body>
     <section class="page-header">
@@ -21,6 +25,22 @@
         <pre><code>s = MyString("hello")
 s.devowel() # returns "hll"
           </code></pre>
+<div class="item hidden">
+<h2><a></a>Solution</h2>
+<pre><code>class Mystring:
+    def __init__(self, string):
+        self.string = string
+
+    def devowel(self):
+        strin = list(self.string)
+        output = []
+        vow = list('aeiou')
+        for element in strin:
+            if element not in vow:
+                output.append(element)
+        return print("".join(output))
+</code></pre>
+</div>
           <h1>Exercise 2</h1>
           <p>Write a class called Player which starts with 100 health has 2 functions,
             hit and heal which hit and heal the player for some specified value.
@@ -31,6 +51,22 @@ p.heal(20)
 p.hit(20)
 p.hit(1) # prints out "he ded"
             </code></pre>
+<div class="item hidden">
+<h2><a></a>Solution</h2>
+<pre><code>class Player:
+    def __init__(self):
+        self.health = 100
+
+    def hit(self, number):
+        self.health -= number
+        if self.health &lt;= 0:
+            print('he ded')
+
+    def heal(self, number):
+        self.health += number
+
+</code></pre>
+</div>
             <h1>Exercise 3</h1>
             <p>Write a Python class named Circle constructed by a radius and which
               has two methods which will compute the area and the perimeter of a circle</p>
@@ -38,6 +74,19 @@ p.hit(1) # prints out "he ded"
 c.perimeter() # prints out 2*pi*5
 c.area() # prints out pi*5^2
               </code></pre>
+<div class="item hidden">
+<h2><a></a>Solution</h2>
+<pre><code>class Circle:
+    def __init__(self, radius):
+        self.radius = radius
+
+    def perimeter(self):
+        print(pi*2*self.radius)
+
+    def Area(self):
+        print(pi*self.radius*self.radius)
+</code></pre>
+</div>
               <h1>Exercise 4</h1>
               <p>Write 2 Python classs named Rectangle and Square, Rectangle should take in
                 height and width and have a function to computer permeter and area.
@@ -50,5 +99,34 @@ s = Square(2)
 s.perimeter() # 8
 s.area()      # 4
                 </code></pre>
+<div class="item hidden">
+<h2><a></a>Solution</h2>
+<pre><code>class Rectangle:
+    def __init__(self, height, width):
+        self.height = height
+        self.width = width
+
+    def perimeter(self):
+        print(2*(self.height+self.width))
+
+    def area(self):
+        print(self.height*self.width)
+
+class Square(Rectangle):
+    def __init__(self, height):
+        super().__init__(height, height)
+</code></pre>
+</div>
+<script>
+    window.onload = () => {
+      if(window.location.href.split("#")[1] === "sol") {
+        const l = document.getElementsByClassName("item");
+        for (elem of l) {
+          console.log(elem);
+          elem.classList.remove("hidden");
+        }
+      }
+    }
+  </script>
   </body>
 </html>

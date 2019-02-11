@@ -6,7 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#157878">
     <link rel="stylesheet" href="assets/style.css">
-
+    <style>
+    .hidden {
+      display: none;
+    }
+    </style>
   </head>
   <body>
     <section class="page-header">
@@ -27,6 +31,18 @@
 5 | 5  10  15  20  25
       </code></pre>
       <blockquote>You can assume the highest number you'll get is 99</blockquote>
+      <div class="item hidden">
+          <h2><a></a>Solution</h2>
+<pre><code>def print_table(size):
+    header = '   |' +''.join([f'{i:5}' for i in range(1,size+1)])
+    print(header)
+    print('='*(len(header)+2))
+    for i in range(1,size+1):
+        row = [f'{i*j:5}' for j in range(1,size+1)]
+        print(f'{i:&lt;3}|'+''.join(row))
+print_table(7)
+</code></pre>
+      </div>
       <h1><a></a>Exercise 2</h1>
       <p>Write a function that takes in a list of <i>tuples</i> where each tuple contains a fruit,
         it's cost and the selling price of the fruit </p>
@@ -38,18 +54,51 @@ fruits.append(("apple",12,5))   # an apple worth 12 bucks with a selling price o
 fruits.append(("bannana",3,100)
 l = f(fruits,1) # l is ["bannana"] which is the most profitable
     </code></pre>
+    <div class="item hidden">
+        <h2><a></a>Solution</h2>
+<pre><code>def get_items_to_buy(fruits, max):
+    profits = [(fruit[0],fruit[2] - fruit[1]) for fruit in fruits]
+    profits = sorted(profits, key=lambda x: x[1], reverse=True)
+    return profits[:max]
+</code></pre>
+    </div>
     <h1><a></a>Exercise 3</h1>
     <p>Write a function that takes in a movie title such as "need for speed" and
       generates every possible play on the title that involves changing 1 character,
-      such as "seed for speed" or "need far speed", but every word must still be a word in the
-      english dictionary so xeed for speed isn't a valid result.
+      such as "seed for speed" or "need far speed",
+      but to narrow down the amount of results that are garbage like 'xeed for speed',
+      don't replace any letter with "x" "y" or "z".
     </p>
     <p></p>
-    <pre><code>
-      l = f("need for speed")
-      print(l) # ["seed for speed",...]
+    <pre><code>l = f("need for speed")
+print(l) # ["seed for speed",...]
     </code></pre>
-    <blockquote> You may want to look at the enchant package </blockquote>
+    <div class="item hidden">
+        <h2><a></a>Solution</h2>
+<pre><code>def movie_titles(title):
+    title = title.lower()
+    for l in range(len(title)):
+        if list(title)[l] == ' ':
+            continue
+        for c in range(ord('a'),ord('x')):
+            copy = list(title)
+            copy[l] = chr(c)
+            print(''.join(copy))
+
+movie_titles("need for speed")
+</code></pre>
+</div>
     </section>
+    <script>
+      window.onload = () => {
+        if(window.location.href.split("#")[1] === "sol") {
+          const l = document.getElementsByClassName("item");
+          for (elem of l) {
+            console.log(elem);
+            elem.classList.remove("hidden");
+          }
+        }
+      }
+    </script>
   </body>
 </html>
