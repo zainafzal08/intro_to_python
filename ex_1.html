@@ -88,6 +88,54 @@ print(l) # ["seed for speed",...]
 movie_titles("need for speed")
 </code></pre>
 </div>
+<h1>Exercise 4</h1>
+<p>Write a function that given a file name will read the file and print out
+  how often each letter is used as a percentage (case insensitve)</p>
+<pre><code>count_letters("hello.txt") # assume hello.txt is a file with 1 line in it "HHH"
+a : 0.00%
+b : 0.00%
+c : 0.00%
+d : 0.00%
+e : 0.00%
+f : 0.00%
+g : 0.00%
+h : 100.00%
+i : 0.00%
+j : 0.00%
+k : 0.00%
+l : 0.00%
+m : 0.00%
+n : 0.00%
+o : 0.00%
+p : 0.00%
+q : 0.00%
+r : 0.00%
+s : 0.00%
+t : 0.00%
+u : 0.00%
+v : 0.00%
+w : 0.00%
+x : 0.00%
+y : 0.00%
+z : 0.00%
+</code></pre>
+<blockquote> Aim to match the 2 decimal places shown above </blockquote>
+<div class="item hidden">
+<h2><a></a>Solution</h2>
+<pre><code>def count_file(file):
+counts = {}
+with open(file) as f:
+for c in f.read():
+c = c.lower()
+if c == ' ':
+  continue
+if c not in counts:
+  counts[c] = 0
+counts[c] += 1
+for k in counts.keys():
+print(f"k : {round(counts[k],2)}%")
+</code></pre>
+</div>
     </section>
     <script>
       window.onload = () => {

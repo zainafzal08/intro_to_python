@@ -1,135 +1,146 @@
-
 <!DOCTYPE html>
 <html lang="en-US">
-  <head>
+
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#157878">
     <link rel="stylesheet" href="assets/style.css">
 
-  </head>
-  <body>
+</head>
+
+<body>
     <section class="page-header">
-      <h1 class="project-name">Intro To Python</h1>
-      <h2 class="project-tagline">Part 2: Lists, Branching and Loops</h2>
+        <h1 class="project-name">Intro To Python</h1>
+        <h2 class="project-tagline">Part 2: Lists, Dicts, Branching and Loops</h2>
     </section>
 
     <section class="main-content">
-<h1><a id="Lists_0"></a>Lists</h1>
-<p>It’s very rate we work with just a couple of variables at a time,
-    more common is we work with a set of data.
-    Consider the following case where we want to write a program to email 70 people.</p>
-<pre><code class="language-python">email(<span class="hljs-string">"samantha@fake.com"</span>)
+
+        <h1><a id="Lists_0"></a>Lists</h1>
+        <p>It’s very rare we work with just a couple of variables at a time,
+            more common is we work with a set of data.
+            Consider the following case where we want to write a program to email 70 people.</p>
+        <pre><code class="language-python">email(<span class="hljs-string">"samantha@fake.com"</span>)
 email(<span class="hljs-string">"bekky@fake.com"</span>)
 email(<span class="hljs-string">"greg@fake.com"</span>)
 email(<span class="hljs-string">"nina@fake.com"</span>)
 email(<span class="hljs-string">"whats_his_name@fake.com"</span>)
 ...
 </code></pre>
-<p>This is really just us doing something for every item in a list,
-    the list being the list of people we want to email.
-    We can skip the middle man and represent a list of data in python
-    by using the square brackets</p>
-<pre><code>l = []       # l is a empty list
+        <p>This is really just us doing something for every item in a list,
+            the list being the list of people we want to email.
+            We can skip the middle man and represent a list of data in python
+            by using the square brackets</p>
+        <pre><code>l = []       # l is a empty list
 l = [1,2,3]  # l has 3 elements, the first element in 1, second is 2 third is 3
 </code></pre>
-<p>You can thus do</p>
-<pre><code>l = [&quot;samantha@fake.com&quot;,&quot;bekky@fake.com&quot;,...]
+        <p>You can thus do</p>
+        <pre><code>l = [&quot;samantha@fake.com&quot;,&quot;bekky@fake.com&quot;,...]
 </code></pre>
-<p>and then to access lets say the first element we can do</p>
-<pre><code>l[0]    # get the first element (in computer science we count from 0)
+        <p>and then to access lets say the first element we can do</p>
+        <pre><code>l[0]    # get the first element (in computer science we count from 0)
 </code></pre>
-<p>Now this doesn’t help since our code is just</p>
-<pre><code>email(l[0])
+        <p>Now this doesn’t help since our code is just</p>
+        <pre><code>email(l[0])
 email(l[1])
 ...
 </code></pre>
-<p>not much better, this is where we do <em>looping</em></p>
-<h1><a id="Looping_41"></a>Looping</h1>
-<pre><code>for user in l:
+        <p>not much better, this is where we do <em>looping</em></p>
+
+        <h1><a id="Looping_41"></a>Looping</h1>
+        <pre><code>for user in l:
     print(user)
 </code></pre>
-<p>will print out every element in the list and thus every email, we can thus do</p>
-<pre><code>for user in l:
+        <p>will print out every element in the list and thus every email, we can thus do</p>
+        <pre><code>for user in l:
     email(user)
 </code></pre>
-<p>Even better is since all of our emails are under <code>@fake.com</code> we can shorten the list to</p>
-<pre><code>l = [&quot;samantha&quot;,&quot;greg&quot;,...]
+        <p>Even better is since all of our emails are under <code>@fake.com</code> we can shorten the list to</p>
+        <pre><code>l = [&quot;samantha&quot;,&quot;greg&quot;,...]
 </code></pre>
-<p>And then do</p>
-<pre><code>for user in l:
+        <p>And then do</p>
+        <pre><code>for user in l:
     email(user + &quot;@fake.com&quot;)
 </code></pre>
-<p>There are other ways to loop,
-    where a for loop will go through every item in a list we also have a while loop
-    which does something over and over again as long as some conidition is true</p>
-<pre><code>while profits &lt; 0:
+        <p>There are other ways to loop,
+            where a for loop will go through every item in a list we also have a while loop
+            which does something over and over again as long as some conidition is true</p>
+        <pre><code>while profits &lt; 0:
     trade()
 </code></pre>
-<p>Now in either case sometimes you want to end early,
-    you want to exit the loop or sometimes you just want to skip some item
-     lets say if we want to email everyone in a list as long as they arn’t in a
-     <em>blacklist</em> of enemies. This requires two things, one we need to check if the user
-     is in a blacklist, and second we need to skip the user if they are</p>
-<pre><code>blacklist = [&quot;greg&quot;] # he called me ugly
+        <p>Now in either case sometimes you want to end early,
+            you want to exit the loop or sometimes you just want to skip some item
+            lets say if we want to email everyone in a list as long as they arn’t in a
+            <em>blacklist</em> of enemies. This requires two things, one we need to check if the user
+            is in a blacklist, and second we need to skip the user if they are</p>
+        <pre><code>blacklist = [&quot;greg&quot;] # he called me ugly
 for user in l:
     if user in blacklist:
         continue
     email(user)
 </code></pre>
-<p>The <code>continue</code> keyword stops the code where it is and jumps to the next item in the list
-<br>
-Now what if the moment you see greg you just stop,
-nobody is getting invited after you see greg,
-well here you can use <code>break</code></p>
+        <p>The <code>continue</code> keyword stops the code where it is and jumps to the next item in the list
+            <br>
+            Now what if the moment you see greg you just stop,
+            nobody is getting invited after you see greg,
+            well here you can use <code>break</code></p>
 
-<pre><code>blacklist = [&quot;greg&quot;] # he called me ugly
+        <pre><code>blacklist = [&quot;greg&quot;] # he called me ugly
 for user in l:
     if user in blacklist:
         break
     email(user)
 </code></pre>
-<p>That works but what happens if we have nested loops, lets say</p>
-<pre><code>for x in range(10):          # range(x) is a function that returns a list [0,1,2,3,4,...x-1]
+        <p>That works but what happens if we have nested loops, lets say</p>
+        <pre><code>for x in range(10):          # range(x) is a function that returns a list [0,1,2,3,4,...x-1]
     for y in range(10):
         print(x,y)
         break
 </code></pre>
-<p>Will break end the inner most loop or break both loops?<br>
-It’ll break just the innermost loop so be careful.</p>
-<p>Also note that lists can grow and shrink as needed, you can do <code>l.append(x)</code>
-    to put a element on teh end of a list and <code>l.pop()</code> to pop a
-    element off the front for example</p>
-<h1><a id="List_Comprehension_109"></a>List Comprehension</h1>
-<p>Now the whole idea of “do X for every element in Y only if Z” is super common</p>
-<ul>
-<li>email someone if they arn’t on a black list</li>
-<li>add a number if it’s even</li>
-<li>trade a stock if it’s profitable</li>
-</ul>
-<p>As such you can do this in one line within python</p>
-<pre><code>l = [X for X in Y if Z]
+        <p>Will break end the inner most loop or break both loops?<br>
+            It’ll break just the innermost loop so be careful.</p>
+        <p>Also note that lists can grow and shrink as needed, you can do <code>l.append(x)</code>
+            to put a element on teh end of a list and <code>l.pop()</code> to pop a
+            element off the front for example</p>
+        <h1><a id="List_Comprehension_109"></a>List Comprehension</h1>
+        <p>Now the whole idea of “do X for every element in Y only if Z” is super common</p>
+        <ul>
+            <li>email someone if they arn’t on a black list</li>
+            <li>add a number if it’s even</li>
+            <li>trade a stock if it’s profitable</li>
+        </ul>
+        <p>As such you can do this in one line within python</p>
+        <pre><code>l = [X for X in Y if Z]
 </code></pre>
-<p>is how you can create a list with all the elements in Y which meet some criteria Z.
-    It basically helps you filter a list down.</p>
-<pre><code>friends = [&quot;greg&quot;,&quot;simon&quot;,&quot;samantha&quot;]
+        <p>is how you can create a list with all the elements in Y which meet some criteria Z.
+            It basically helps you filter a list down.</p>
+        <pre><code>friends = [&quot;greg&quot;,&quot;simon&quot;,&quot;samantha&quot;]
 blacklist = [&quot;greg&quot;]
 invited = [friend for friend in friends if friend not in blacklist]
 </code></pre>
-<p>And you can even apply extra transformations and ignore the filtering aspect</p>
-<pre><code>l = [1,2,3,4]
+        <p>And you can even apply extra transformations and ignore the filtering aspect</p>
+        <pre><code>l = [1,2,3,4]
 doubled = [2*x for x in l]
 print(doubled) # prints out [1,4,6,8]
 </code></pre>
-<h1><a id="Type_136"></a>Type</h1>
-<p>A list is just another type, and some things can be converted into lists as a result, for example</p>
-<pre><code>s = &quot;hello&quot;
+        <h1><a id="Type_136"></a>Type</h1>
+        <p>A list is just another type, and some things can be converted into lists as a result, for example</p>
+        <pre><code>s = &quot;hello&quot;
 list(s) # this becomes ['h','e','l','l','o'] a character list.
 </code></pre>
-<h1><a id="MultiDimentional_lists_145"></a>Multi-Dimentional lists</h1>
-<p>You can put anything into a list, a number a string or in fact another list.</p>
-<p>If you wanted a 5 by 5 table it would look something like this</p>
-<pre><code>table = [
+<p> An interesting feature of python is the ability to actually multiple strings.
+    Python will do the work of taking a string and repeating it n number of times for you
+</p>
+<pre><code>&gt;&gt;&gt; "A"*10
+"AAAAAAAAAA"
+&gt;&gt;&gt; "na"*8 + " batman"
+"nananananananana batman"
+</code></pre>
+        <h1><a id="MultiDimentional_lists_145"></a>Multi-Dimentional lists</h1>
+        <p>You can put anything into a list, a number a string or in fact another list.</p>
+        <p>If you wanted a 5 by 5 table it would look something like this</p>
+        <pre><code>table = [
     [1,2,3,4,5],
     [6,7,8,9,10],
     [11,12,13,14,15],
@@ -137,76 +148,76 @@ list(s) # this becomes ['h','e','l','l','o'] a character list.
     [21,22,23,24,25]
 ]
 </code></pre>
-<p>now <code>l[1]</code> would return <code>[6,7,8,9,10]</code> and thus <code>l[1][0]</code>
-     would be 6, row 1 col 0.</p>
-<h1><a id="Reference_162"></a>Reference</h1>
-<p>Now the interesting thing is that lists behave a bit differently the normal variables.</p>
-<pre><code>l = []
+        <p>now <code>l[1]</code> would return <code>[6,7,8,9,10]</code> and thus <code>l[1][0]</code>
+            would be 6, row 1 col 0.</p>
+        <h1><a id="Reference_162"></a>Reference</h1>
+        <p>Now the interesting thing is that lists behave a bit differently the normal variables.</p>
+        <pre><code>l = []
 add_to_l(l):
     l.append(1)
 print(l)
 </code></pre>
-<p>with a normal variable the value gets copied before the function starts so all the
-    changes are disgarded, but the way lists work is that you pass a reference to the list
-    around so any changes you make on the list anywhere are global unless you explicitly
-    copy the list.</p>
-<p>What do you think this will print</p>
-<pre><code>l = []
+        <p>with a normal variable the value gets copied before the function starts so all the
+            changes are disgarded, but the way lists work is that you pass a reference to the list
+            around so any changes you make on the list anywhere are global unless you explicitly
+            copy the list.</p>
+        <p>What do you think this will print</p>
+        <pre><code>l = []
 l2 = l
 l.append(1)
 print(l)
 print(l2)
 </code></pre>
-<p>What about this</p>
-<pre><code>l = []
+        <p>What about this</p>
+        <pre><code>l = []
 l2 = l.copy()
 l.append(1)
 print(l)
 print(l2)
 </code></pre>
-<h1><a id="Tuples_And_sets_195"></a>Tuples And sets</h1>
-<p>Another way to represent a collection of data is to use a use a set which ar
-     exactly like mathematical sets in
-    that they can not have duplicates or any order</p>
-<pre><code>s = set()
+        <h1><a id="Tuples_And_sets_195"></a>Tuples And sets</h1>
+        <p>Another way to represent a collection of data is to use a use a set which ar
+            exactly like mathematical sets in
+            that they can not have duplicates or any order</p>
+        <pre><code>s = set()
 s.add(1)
 s.add(1)
 len(s) == 1 # true
 </code></pre>
-<p>These are nice cause you can do unions, intersections etc. on them,
-    check out the docs for a full list</p>
-<pre><code>s = s1 | s2 # union
+        <p>These are nice cause you can do unions, intersections etc. on them,
+            check out the docs for a full list</p>
+        <pre><code>s = s1 | s2 # union
 s = s1 &amp; s2 # intersection
 </code></pre>
-<p>There are also tuples, these are the same as lists but once created are locked</p>
-<pre><code>l = [1,2] # list
+        <p>There are also tuples, these are the same as lists but once created are locked</p>
+        <pre><code>l = [1,2] # list
 t = (1,2) # tuple
 l.append(1) # all good
 t.append(1) # Error
 </code></pre>
-<h1><a id="Sorting_222"></a>Sorting</h1>
-<p>It’s really common you want to sort some list by value and python makes that easy</p>
-<pre><code>l = [1,6,2,3,8,1]
+        <h1><a id="Sorting_222"></a>Sorting</h1>
+        <p>It’s really common you want to sort some list by value and python makes that easy</p>
+        <pre><code>l = [1,6,2,3,8,1]
 l = sorted(l)
 print(l)          # [1,1,2,3,6,8]
 </code></pre>
-<p>But sometimes you want to sort a list of a more complex object,
-    lets say you have a list of tuples and you want to sort by the second field in each tuple.<br>
-You can do this by specifing a function you want to be run on each element of a list to extract out
-the field to be sorted on, basically python will take your function f and do f(e) for each
-item in the list before sorting it</p>
-<pre><code>def extract_second(e):
+        <p>But sometimes you want to sort a list of a more complex object,
+            lets say you have a list of tuples and you want to sort by the second field in each tuple.<br>
+            You can do this by specifing a function you want to be run on each element of a list to extract out
+            the field to be sorted on, basically python will take your function f and do f(e) for each
+            item in the list before sorting it</p>
+        <pre><code>def extract_second(e):
     return e[1]
 l = [(1,10),(2,100),(3,0)] # we want [(3,0),(1,10),(2,100)]
 l = sorted(l, key=extract_second)
 </code></pre>
-<p>Now this is a very simple 1 line function so we can use a lambda</p>
-<pre><code>l = [(1,10),(2,100),(3,0)] # we want [(3,0),(1,10),(2,100)]
+        <p>Now this is a very simple 1 line function so we can use a lambda</p>
+        <pre><code>l = [(1,10),(2,100),(3,0)] # we want [(3,0),(1,10),(2,100)]
 l = sorted(l, key=lambda x: x[1])
 </code></pre>
-<h1><a id="Splicing_247"></a>Splicing</h1>
-<p>this is a way you can extract a set of values from a list</p>
-<pre><code>&gt;&gt;&gt; l = [1,2,3,4,5,6,7,8,9]
+        <h1><a id="Splicing_247"></a>Splicing</h1>
+        <p>this is a way you can extract a set of values from a list</p>
+        <pre><code>&gt;&gt;&gt; l = [1,2,3,4,5,6,7,8,9]
 &gt;&gt;&gt; l[0:9]
 [1, 2, 3, 4, 5, 6, 7, 8, 9]
 &gt;&gt;&gt; l[0:8]
@@ -226,6 +237,99 @@ l = sorted(l, key=lambda x: x[1])
 &gt;&gt;&gt; l[:3]
 [1, 2, 3]
 </code></pre>
+        <p>You can also extract every nth value by specifying a third number in your splice</p>
+        <pre><code>&gt;&gt;&gt; l = [1,2,3,4,5,6,7,8,9]
+&gt;&gt;&gt; l[0:9:2]
+[1, 3, 5, 7, 9]
+&gt;&gt;&gt; l[0:9:3]
+[1, 4, 7]
+&gt;&gt;&gt; l[0:9:3]
+[1, 4, 7]
+&gt;&gt;&gt; l[0:9:9]
+[1]
+</code></pre>
+        <h1><a id="Dictionaries_166"></a>Dictionaries</h1>
+        <p>These are SUPER useful data structures in python, they let us map one thing to another.
+            Consider this</p>
+        <pre><code>d = {}          # make a empty dictionary
+d[&quot;zain&quot;] = 2   # the string &quot;zain&quot; maps to the number 2
+</code></pre>
+        <p>The way these work in the backend make them not only very nice to use but also super quick.
+            Whenever you want to have a way to convert one thing into another quickily use a dict first.
+            It also really helps for counting things, consider this example</p>
+        <pre><code>d = {}
+d[&quot;apple&quot;] = 0
+d[&quot;pear&quot;] = 0
+for x in [&quot;apples&quot;,&quot;pear&quot;,&quot;pear&quot;,&quot;pear&quot;,&quot;apple&quot;]:
+    d[x]+=1
+print(d)
+</code></pre>
+        <p>We’ll print out the dictionary and it’ll say <code>d[&quot;apple&quot;]: 2</code>,
+            helping us count the number of each item in a list.</p>
+        <blockquote>
+            <p>Do note of course these are case sensitive “Apple” != “apple”</p>
+        </blockquote>
+        <p>you can have really anything map to anything else,
+            the thing you put in the brackets is called the <em>key</em> and the thing it maps to is
+            called a <em>value</em></p>
+        <pre><code># you can also declare some values into a dict at time of creation
+d = {
+    &quot;hello&quot;: 1     # the key &quot;hello&quot; maps to the number 1,
+    1: &quot;what&quot;      # the number 1 maps to the string &quot;what&quot;
+}
+</code></pre>
+        <p>note that the syntax is the same but dicts are NOT lists</p>
+        <pre><code>l = []
+d = {}
+l[0] = 1 # 0th element is 1
+d[0] = 1 # the number 0 maps to 1
+</code></pre>
+        <p>You may think why use a dict if you want to map a index to something. why not just use a list?</p>
+        <p>What do you think will happen here</p>
+        <pre><code>l = []
+l[100] = 1
+print(l)
+d = {}
+d[100] = 1
+print(d)
+</code></pre>
+        <p>The line <code>l[100] = 1</code> will fail, the list doesn’t have 100 elements,
+            you’d have to make a list with 100 cells and set the 100th one to 1,
+            that’s wasteful if you only want to store the value for 100.</p>
+        <p>Ok so why not use a dict everywhere? Dicts are bad for iterations,
+            it’s annoying to append increasing values to them and if you want to iterate over
+            all the values you have to do</p>
+        <p>for value in d.values():<br>
+            print(value)</p>
+        <p>and until recently your output would be jumbled, i.e in no paritcular order
+            (a recent update actually made it that dicts always return values in the order
+            they were inserted but that’s somewhat cutting edge)</p>
+        <p>In addition lists are better then dicts when it comes to reading and writings sets of data.</p>
+        <p>Lastly if you try and get a value with a key that the dict doesn’t know about you get a key error
+            but you can check for a key very easily</p>
+        <pre><code>d = {&quot;zain&quot;: 1}
+if &quot;zain&quot; in d:
+    print(d[&quot;zain&quot;])
+</code></pre>
+        <p>Even easier you can use <code>get</code> to get a value and if it doesn’t exist
+            return a default instead of crashing</p>
+        <pre><code>print(d.get(&quot;zain&quot;,None)) # prints value of zain if it exists otherwise print None
+</code></pre>
+        <h1><a id="Dictionaries_166"></a>Dict Comprehension</h1>
+        <p>
+            You can also form dictionaries quickily by doing
+        </p>
+        <pre><code>d = { i: i*2 for i in range(3)}
+print(d)</code></pre>
+        <pre><code>{
+    0: 0,
+    1: 1,
+    2: 4
+}</code></pre>
+        <p>
+            Same as list Comprehension but with curly braces.
+        </p>
     </section>
-  </body>
+</body>
+
 </html>

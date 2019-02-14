@@ -140,8 +140,42 @@ if re.match('he*y',&quot;heeeeeey&quot;):
         <code>f*ck</code>, if you just used that you'd match <code>ffffffffck</code>,
         you can escape a special character basically telling regex to treat it like any
         other character as such <code>f\*uck</code></code></p>
+      <p>
+        Now there is also the ability to match a subset of the symbol set. You just use square brackets
+        <code> [hH]ello</code> will match <code> Hello </code> and <code>hello</code> the first token represents
+        one of either <code>H</code> or <code>h</code>. If you only wanted to match characters and not spaces you could do
+        <code>[abcdefghijklmnopqrstuvwxyzABCDEF..]</code> but these let you use ranges so you can do
+        <code> [a-zA-Z0-9]</code>, even better you can use a built in short cut most langauges give you in the form of
+        <code> \w</code>, you can also use <code>\s</code> to match any type of white space, spaces, tabs etc. and you can use
+        <code>\d</code> to match <code>[0-9]</code> as in any type of digit.
+      </p>
+      <p>
+        With specifying a symbol subset you can also ask it to match anything in the full alphabet EXCEPT
+        something, the regex <code>[^Aa]+</code> will match any word without the letter a in it, i.e <code>hello</code> will match
+        but <code> apple </code> and <code> brah</code> won't
+       </p>
       <p>There are more details but most of them are more fun to figure out live.
         Have a crack --&gt; <a href="https://alf.nu/RegexGolf">https://alf.nu/RegexGolf</a></p>
+    <h1><a id="Regex_0"></a>Groups</h1>
+    <p>
+      Now it's useful to be able to specify a language but a lot more useful is using that to extract information.
+      It's great if you can use a regex like <code>.+@.+\..+</code> to detect if a file has a email
+      in it but it would be cool if you could also get the email itself.
+    </p>
+    <p>
+      This is also a common problem and thus there exists a system for it, it's calle dregex groups,
+      and it basically allows you to run strings through your regex but on a match
+      additionally extract out fields. Observe below.
+    </p>
+    <code>
+      <pre>import re
+# r just means raw, it tells python not to do anything fancy with this string
+# like convert \\ into \ which it might do otherwise.
+m = re.search(r"(\w+)@(\w+)","hello world my email is john@smith")
+print(m.groups())
+# prints out (john, smith)
+      </pre>
+    </code>
     </section>
   </body>
 </html>

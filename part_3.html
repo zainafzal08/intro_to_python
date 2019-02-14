@@ -11,7 +11,7 @@
   <body>
     <section class="page-header">
       <h1 class="project-name">Intro To Python</h1>
-      <h2 class="project-tagline">Part 3: File IO, Dictionaries, Dynamic Functionss</h2>
+      <h2 class="project-tagline">Part 3: File IO, Dynamic Functionss</h2>
     </section>
 
     <section class="main-content">
@@ -174,73 +174,7 @@ print(soup.title.name) # prints out the title of the page, in this case 'Google'
 <li><a href="http://docs.python-requests.org/en/master/">requests</a></li>
 <li><a href="https://www.crummy.com/software/BeautifulSoup/bs4/doc/">soup</a></li>
 </ul>
-<h1><a id="Dictionaries_166"></a>Dictionaries</h1>
-<p>These are SUPER useful data structures in python, they let us map one thing to another.
-    Consider this</p>
-<pre><code>d = {}          # make a empty dictionary
-d[&quot;zain&quot;] = 2   # the string &quot;zain&quot; maps to the number 2
-</code></pre>
-<p>The way these work in the backend make them not only very nice to use but also super quick.
-    Whenever you want to have a way to convert one thing into another quickily use a dict first.
-    It also really helps for counting things, consider this example</p>
-<pre><code>d = {}
-d[&quot;apple&quot;] = 0
-d[&quot;pear&quot;] = 0
-for x in [&quot;apples&quot;,&quot;pear&quot;,&quot;pear&quot;,&quot;pear&quot;,&quot;apple&quot;]:
-    d[x]+=1
-print(d)
-</code></pre>
-<p>We’ll print out the dictionary and it’ll say <code>d[&quot;apple&quot;]: 2</code>,
-    helping us count the number of each item in a list.</p>
-<blockquote>
-<p>Do note of course these are case sensitive “Apple” != “apple”</p>
-</blockquote>
-<p>you can have really anything map to anything else,
-    the thing you put in the brackets is called the <em>key</em> and the thing it maps to is
-    called a <em>value</em></p>
-<pre><code># you can also declare some values into a dict at time of creation
-d = {
-    &quot;hello&quot;: 1     # the key &quot;hello&quot; maps to the number 1,
-    1: &quot;what&quot;      # the number 1 maps to the string &quot;what&quot;
-}
-</code></pre>
-<p>note that the syntax is the same but dicts are NOT lists</p>
-<pre><code>l = []
-d = {}
-l[0] = 1 # 0th element is 1
-d[0] = 1 # the number 0 maps to 1
-</code></pre>
-<p>You may think why use a dict if you want to map a index to something. why not just use a list?</p>
-<p>What do you think will happen here</p>
-<pre><code>l = []
-l[100] = 1
-print(l)
-d = {}
-d[100] = 1
-print(d)
-</code></pre>
-<p>The line <code>l[100] = 1</code> will fail, the list doesn’t have 100 elements,
-    you’d have to make a list with 100 cells and set the 100th one to 1,
-    that’s wasteful if you only want to store the value for 100.</p>
-<p>Ok so why not use a dict everywhere? Dicts are bad for iterations,
-    it’s annoying to append increasing values to them and if you want to iterate over
-    all the values you have to do</p>
-<p>for value in d.values():<br>
-print(value)</p>
-<p>and until recently your output would be jumbled, i.e in no paritcular order
-    (a recent update actually made it that dicts always return values in the order
-    they were inserted but that’s somewhat cutting edge)</p>
-<p>In addition lists are better then dicts when it comes to reading and writings sets of data.</p>
-<p>Lastly if you try and get a value with a key that the dict doesn’t know about you get a key error
-    but you can check for a key very easily</p>
-<pre><code>d = {&quot;zain&quot;: 1}
-if &quot;zain&quot; in d:
-    print(d[&quot;zain&quot;])
-</code></pre>
-<p>Even easier you can use <code>get</code> to get a value and if it doesn’t exist
-    return a default instead of crashing</p>
-<pre><code>print(d.get(&quot;zain&quot;,None)) # prints value of zain if it exists otherwise print None
-</code></pre>
+
 <h1><a id="Dynamic_Functions_246"></a>Dynamic Functions</h1>
 <p>Ok so any function you’ve written can take in a specific number of functions</p>
 <pre><code>def f(a,b,c):
