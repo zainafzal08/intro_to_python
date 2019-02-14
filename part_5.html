@@ -176,6 +176,13 @@ print(m.groups())
 # prints out (john, smith)
       </pre>
     </code>
+    <p>
+      Finally there is a important thing to understand about how regex matches, and that is that it
+      matches <i>greedily</i>. The regex "hello (.*)" matching against "hello world how are you" will give you
+      <code>"world how are you"</code> as your first group. Simply put the star and plus operations
+      will match as much as they can without violating the regex. If you would like it to match shyly you can do
+      <code>hello (.*?)</code> but of course this will match nothing as the least * can match is 0 characters.
+    </p>
     </section>
   </body>
 </html>
