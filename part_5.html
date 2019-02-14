@@ -171,6 +171,8 @@ if re.match('he*y',&quot;heeeeeey&quot;):
       <pre>import re
 # r just means raw, it tells python not to do anything fancy with this string
 # like convert \\ into \ which it might do otherwise.
+# search is just like match but is less strict in where it finds the
+# pattern (doesn't have to be the start of the line for example) look for multiple instances.
 m = re.search(r"(\w+)@(\w+)","hello world my email is john@smith")
 print(m.groups())
 # prints out (john, smith)
